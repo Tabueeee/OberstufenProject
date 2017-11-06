@@ -1,0 +1,22 @@
+{
+  "name": "oberstufenprojekt_gruppe_3_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mailgen": "^2.0.2",
+    "nodemailer": "^4.3.1"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "resolve": "^1.5.0",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1",
+    "yargs": "^10.0.3"
+  }
+}

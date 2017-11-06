@@ -1,0 +1,26 @@
+{
+  "name": "oberstufenprojekt_gruppe_3_client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify -t [ stringify --extensions [.html .css] ] -p [ tsify --project ./tsconfig.json ] --debug ./app.ts > ./app.js",
+    "build-watch": "watchify -t [ stringify --extensions [.html .css] ] -p [ tsify --project ./tsconfig.json ] --debug ./app.ts -o ./app.js",
+    "reload": "livereload . -w 500 -d"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.8.2",
+    "browserify": "^14.5.0",
+    "mocha": "^4.0.1",
+    "stringify": "^5.1.0",
+    "tsify": "^3.0.3",
+    "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "es6-promise": "^4.1.1",
+    "forge-di": "^11.0.0"
+  }
+}

@@ -1,0 +1,64 @@
+{
+    "A": {
+        "0": {
+        },
+        "1": {
+        }
+    },
+    "B": {
+        "0": {
+        },
+        "1": {
+        }
+    },
+    "C": {
+        "0": {
+            "07": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "13": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "15": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "05": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "17": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "04": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "21": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "02": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "23": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "25": {
+                "layout": "groups",
+                "teacher": ""
+            },
+            "01": {
+                "layout": "groups",
+                "teacher": ""
+            }
+        },
+        "1": {
+        }
+    }
+}
