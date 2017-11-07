@@ -12,6 +12,6 @@ export class StylesSupplier {
             return style;
         }
 
-        throw new Error('referenced Styles not found for: ' + styleName);
+        throw new Error('referenced Styles not found for: "' + styleName + '"');
     }
 }

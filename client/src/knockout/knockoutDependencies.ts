@@ -22,6 +22,7 @@ export class KnockoutDependencies {
     }
 
     public registerKnockoutModules() {
+        this.forge.bind('knockoutHandlers').to.type(LinkHandler);
         this.forge.bind('stylesSupplier').to.type(StylesSupplier);
         this.forge.bind('templateSupplier').to.type(TemplateSupplier);
         this.forge.bind('componentSetup').to.type(knockoutComponentFactory);

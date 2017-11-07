@@ -1,4 +1,5 @@
 import {Router} from './Router';
+import {ComponentName} from './knockout/config/Components';
 
 export abstract class UserActions {
     private router: Router;
@@ -7,7 +8,9 @@ export abstract class UserActions {
         this.router = router;
     }
 
-    public changePage(moduleName: string) {
+    public changePage(moduleName: ComponentName, roomName?: string) {
+
+
         this.router.renderPage(moduleName);
     }
 }

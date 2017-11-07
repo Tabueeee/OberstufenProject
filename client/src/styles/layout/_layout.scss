@@ -1,0 +1,76 @@
+
+.page {
+  height:     100%;
+  box-sizing: border-box;
+}
+
+.page-container {
+  display:     flex;
+  padding-top: 35px;
+  box-sizing:  border-box;
+  min-height: 100%;
+}
+
+.content-container {
+  flex-grow:        5;
+  padding:          25px;
+  background-color: aliceblue;
+}
+
+.content {
+  background-color: aliceblue;
+  min-height:       450px;
+  box-sizing:       border-box;
+}
+
+.clear-fix {
+  &::after {
+    display: table;
+    content: '';
+    clear:   both;
+  }
+}
+
+body, html {
+  margin:           0;
+  padding:          0;
+  background-color: bisque;
+}
+
+.header {
+  height:           35px;
+  width:            100%;
+  position:         fixed;
+  background-color: $color-accent-main;
+  color:            white;
+
+}
+
+.grid {
+  display:   flex;
+  flex-wrap: wrap-reverse;
+}
+
+.box {
+  border:                1px solid rgba(57, 61, 83, 0.4);
+
+  &:hover {
+    border: 1px solid rgba(57, 61, 83, 1);
+  }
+
+  &:focus {
+    border: 1px solid rgba(57, 61, 83, 1);
+  }
+
+  border-radius:         12px 12px 12px 12px;
+  -moz-border-radius:    12px 12px 12px 12px;
+  -webkit-border-radius: 12px 12px 12px 12px;
+  background-color:      white;
+
+  float:                 left;
+  margin:                25px 5px 0;
+  box-sizing:            border-box;
+  padding:               20px;
+  flex-grow:             1;
+}
+

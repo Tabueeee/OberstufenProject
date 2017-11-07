@@ -26,6 +26,7 @@ export class Router {
 
     public renderPage(pageName: string): void {
         if (isComponentName(pageName) === false) {
+            console.log(`route: "${pageName}" not found, redirecting to home page.`);
             pageName = this.INITIAL_PAGE;
         }
 

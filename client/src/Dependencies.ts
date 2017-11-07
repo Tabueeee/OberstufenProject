@@ -3,6 +3,9 @@ import {ContentDependencies} from './content/ContentDependencies';
 import {KnockoutDependencies} from './knockout/knockoutDependencies';
 import {HistoryManager} from './common/HistoryManager';
 import {ParamReader} from './common/ParamReader';
+import {Application} from './Application';
+import {UserActions} from './UserActions';
+import {Router} from './Router';
 
 
 export class Dependencies {
@@ -10,6 +13,8 @@ export class Dependencies {
 
     public constructor() {
         this.forge = new Forge();
+        this.forge.bind('name').to.instance('');
+        this.forge.bind('application').to.type(Application);
         this.registerDOMElements();
         this.registerDependencies();
         new ContentDependencies(this.forge);
@@ -23,6 +28,8 @@ export class Dependencies {
     private registerDependencies() {
         this.forge.bind('historyManager').to.type(HistoryManager);
         this.forge.bind('paramReader').to.type(ParamReader);
+        this.forge.bind('userActions').to.type(UserActions);
+        this.forge.bind('router').to.type(Router);
     }
 
     private registerDOMElements() {

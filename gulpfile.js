@@ -22,13 +22,14 @@ gulp.task('clean:css', function (done) {
 })
 
 gulp.task('clean:js', function (done) {
-    glob('client/src/**/*.js*, {}, function (err, files) {
-    if (typeof err !== 'undefined') {
-        done(err);
-    }
+    glob('client/src/**/*.js*', {}, function (err, files) {
+        if (typeof err !== 'undefined') {
+            done(err);
+        }
 
-    del(files, function () {
-        done();
+        del(files, function () {
+            done();
+        });
     });
 });
 
@@ -48,7 +49,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('sass:watch', function () {
-    gulp.watch('./sass/**/*.scss', ['sass']);
+    gulp.watch('./client/src/**/*.scss', ['sass']);
 });
 
 //todo copy knockout to node modules or target via bowerrc and copy min as index

@@ -1,0 +1,61 @@
+@import '../../../styles/var/variables';
+
+.sidebar-container {
+    background-color: $color-background-main;
+    box-sizing:       border-box;
+    display:          block;
+    width:            250px;
+
+    @media(min-width: 900px) {
+        width: 350px;
+    }
+}
+
+.sidebar {
+    box-sizing: border-box;
+    display:    block;
+    padding:    25px;
+}
+
+.sidebar-list {
+    color:      white;
+    list-style: none;
+    padding:    0;
+    width:      100%;
+
+    .icon {
+        display:     block;
+        float:       left;
+        margin-left: 15px;
+        margin-top:  5px;
+    }
+
+    a {
+        box-sizing:      border-box;
+        color:           white;
+        display:         block;
+        padding:         5px 35px;
+        text-decoration: none;
+        width:           100%;
+    }
+
+    .item {
+        margin: 5px 0;
+
+        &.active {
+            a {
+                border-left: 5px solid $color-accent-main;
+            }
+        }
+
+        &:hover {
+            background-color: lighten($color-background-main, $color-default-highlight);
+        }
+    }
+
+    .setitem {
+        margin-left: 5px;
+    }
+
+}
+
