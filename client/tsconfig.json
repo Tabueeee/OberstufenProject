@@ -1,37 +1,27 @@
 {
     "compilerOptions": {
         "baseUrl": "./",
-        "allowJs": false,
+        "allowJs": true,
         "module": "commonjs",
         "noImplicitAny": false,
         "removeComments": true,
         "preserveConstEnums": true,
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "sourceMap": true,
-        "noResolve": false,
-        "noEmitOnError": true,
-        "allowUnreachableCode": false,
-        "downlevelIteration": true,
-        "locale": "en-us",
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "strict": true,
-        "strictNullChecks": true,
-        "stripInternal": true,
-        "suppressImplicitAnyIndexErrors": false
+        "target": "ES3",
         "lib": [
-            "es2015.promise"
+            "es2015",
+            "dom"
         ],
+        "moduleResolution": "node",
+        "experimentalDecorators": false,
+        "sourceMap": false,
+        "pretty": false,
+        "noResolve": false,
         "typeRoots": [
             "typings/globals",
             "typings/modules"
         ]
-    }
+    },
     "include": [
-        "./src/**/*.ts"
+        "./**/*.ts"
     ]
 }
