@@ -4,29 +4,49 @@ import {ParamReader} from './common/ParamReader';
 import {Application} from './Application';
 import {UserActions} from './UserActions';
 import {Router} from './Router';
-import Forge = require("forge-di");
+import {ServerActions} from './common/ServerActions';
+import {XhrRequest} from './common/XhrRequest';
+import Forge = require('forge-di');
 
 export class Dependencies {
     private forge: Forge;
 
     public constructor() {
         this.forge = new Forge();
-        this.forge.bind('name').to.instance('');
-        this.forge.bind('application').to.type(Application);
-        this.registerDOMElements();
-        this.registerDependencies();
-        new ContentDependencies(this.forge);
-        new KnockoutDependencies(this.forge);
+
     }
 
     public get<T extends Object>(name: string): T {
         return this.forge.get(name);
     }
 
-    private registerDependencies() {
+    public async registerDependencies() {
+        this.forge.bind('name').to.instance('');
+        this.forge.bind('application').to.type(Application);
+        this.registerDOMElements();
+        this.registerAppDependencies();
+        await this.registerServerData();
+        new ContentDependencies(this.forge);
+        new KnockoutDependencies(this.forge);
+
+        return this;
+    }
+
+    private async registerServerData() {
+        let serverActions = this.forge.get<ServerActions>('serverActions');
+        let rooms = await serverActions.getRooms();
+        let commonIssues = await serverActions.getCommonIssues();
+
+        this.forge.bind('rooms').to.instance(rooms);
+        this.forge.bind('commonIssues').to.instance(commonIssues);
+    }
+
+    private registerAppDependencies() {
         this.forge.bind('paramReader').to.type(ParamReader);
         this.forge.bind('userActions').to.type(UserActions);
         this.forge.bind('router').to.type(Router);
+        this.forge.bind('xhrRequest').to.type(XhrRequest);
+        this.forge.bind('serverActions').to.type(ServerActions);
     }
 
     private registerDOMElements() {

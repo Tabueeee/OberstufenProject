@@ -2,38 +2,58 @@ import {isComponentName} from './knockout/config/Components';
 import * as ko from 'knockout';
 import {ComponentResolver} from './content/components/ComponentResolver';
 import {PageRenderer} from './content/PageRenderer';
-import {HistoryManager} from './common/HistoryManager';
 
 export class Router {
+    private static readonly layoutMap = {
+        'groups': 'roomGroups',
+        'circle': 'roomCircular',
+        'angled': 'roomGroupsAngled'
+    };
     private pageRenderer: PageRenderer;
     private readonly INITIAL_PAGE = 'home';
     private componentResolver: ComponentResolver;
+    private rooms: Array<any>;
 
     public constructor(
         pageRenderer: PageRenderer,
-        componentResolver: ComponentResolver
+        componentResolver: ComponentResolver,
+        rooms: Array<any>
     ) {
         this.pageRenderer = pageRenderer;
         this.componentResolver = componentResolver;
+        this.rooms = rooms;
     }
 
     public renderLayout() {
-        ko.applyBindings({}, this.pageRenderer.getLayoutNode());
+        let component = this.componentResolver.getComponentByModuleName('sidebar');
+        ko.applyBindings(component, this.pageRenderer.getLayoutNode());
     }
 
-    public renderPage(pageName: string): void {
-        if (isComponentName(pageName) === false) {
-            console.log(`route: "${pageName}" not found, redirecting to home page.`);
-            pageName = this.INITIAL_PAGE;
-        }
+    public renderPage(roomId: string): void {
+        let componentName = this.getComponentNameByRoomId(roomId);
 
-        // let controller = this.controllerResolver.getControllerByComponentName(pageName);
-        let component = this.componentResolver.getComponentByModuleName(pageName);
+        let component = this.componentResolver.getComponentByModuleName(componentName);
         console.log(component);
-        // controller.control(pageName, component);
-        let node = this.pageRenderer.renderRootComponent(pageName, component);
+        let node = this.pageRenderer.renderRootComponent(componentName, component);
 
         ko.applyBindings(component, node);
-        component.onLoad();
+        component.onLoad(roomId);
+    }
+
+    private getComponentNameByRoomId(roomId) {
+        let componentName = this.INITIAL_PAGE;
+
+        let room = this.rooms.filter((room) => room.roomid === roomId)[0];
+
+        if (typeof room !== 'undefined') {
+            let name = Router.layoutMap[room.layout];
+            if (isComponentName(name) !== false) {
+                componentName = name;
+            } else {
+                console.log(`route: "${name}" not found, redirecting to home page.`);
+            }
+        }
+
+        return componentName;
     }
 }

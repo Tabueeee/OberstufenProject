@@ -1,8 +1,10 @@
 export const componentClassMapping = {
     home: 'Home',
-    // room: 'Room',
-    sidebar: 'Sidebar'
-}
+    sidebar: 'Sidebar',
+    roomGroups: 'RoomGroups',
+    roomCircular: 'RoomCircular',
+    roomGroupsAngled: 'RoomGroupsAngled'
+};
 
 export type ComponentName = keyof typeof componentClassMapping;
 

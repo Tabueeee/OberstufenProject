@@ -1,5 +1,13 @@
-<nav class="sidebar-list" data-bind="foreach: rooms">
+<!--<div data-bind="text: JSON.stringify($parent)"></div>-->
+
+<nav class="sidebar-list" data-bind="foreach: {data: wingList, as: 'wing'}">
     <div class="item active">
-        <a data-bind="link: link" href="#"><span data-bind="text: $data"></span></a>
+        <a href="#"><span data-bind="text: wing"></span></a>
+    </div>
+
+    <div data-bind="foreach: {data: $parent.getRoomsByWing(wing), as: 'room'}">
+        <div class="item setitem active">
+            <a data-bind="attr: {href: '?page=room&roomId='+room.roomid}"><span data-bind="text: room.roomid"></span></a>
+        </div>
     </div>
 </nav>

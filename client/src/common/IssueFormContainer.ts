@@ -1,17 +1,12 @@
+import {Issue} from './Issue';
+
 export class IssueFormContainer {
 
-    private issueContainer = {};
+    private issueContainer = [];
 
 
-    public addIssue(roomId: string, issue) {
-        if (typeof this.issueContainer[roomId] !== 'undefined') {
-            this.issueContainer[roomId].push(issue);
-        } else {
-            this.issueContainer[roomId] = [issue];
-        }
+    public addIssue(issue: Issue) {
+        this.issueContainer.push(issue);
     }
 
-    public getRoomIssues(roomId) {
-
-    }
 }

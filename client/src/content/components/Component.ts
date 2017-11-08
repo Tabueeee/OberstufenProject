@@ -16,7 +16,7 @@ export abstract class Component {
 
     }
 
-    public onLoad() {
+    public onLoad(roomId?: string) {
 
     }
 

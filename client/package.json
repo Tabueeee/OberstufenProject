@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "browserify -t [ stringify --extensions [.html .css] ] -p [ tsify --project ./tsconfig.json ] --debug ./src/app.ts > ./src/app.js",
-    "build-watch": "watchify -t [ stringify --extensions [.html .css] ] -p [ tsify --project ./tsconfig.json ] --debug ./app.ts -o ./app.js",
+    "build-watch": "watchify -t [ stringify --extensions [.html .css] ] -p [ tsify --project ./tsconfig.json ] --debug ./src/app.ts -o ./src/app.js",
     "reload": "livereload . -w 500 -d"
   },
   "author": "",

@@ -1,11 +1,8 @@
-// import * as http from 'http';
-// import {sendTestMail} from './testmail';
+/// <reference path="../typings/index.d.ts" />
 
 const Datastore = require('nedb');
-const roomDb = new Datastore({filename: __dirname + '/data/rooms.json', autoload: true});
-
-// sendMail(emailBody).then(console.log);
-
+const roomDb = new Datastore({filename: __dirname + '/../data/rooms.json', autoload: true});
+const commonIssuesDb = new Datastore({filename: __dirname + '/../data/commonIssues.json', autoload: true});
 
 let express = require('express');
 let app = express();
@@ -13,8 +10,9 @@ let app = express();
 app.get('/rooms', async function (req, res) {
     try {
         let docs = await find(roomDb, {});
-        console.log('docs: ' + JSON.stringify(docs));
         res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.send(JSON.stringify(docs));
     } catch (err) {
         console.log(err);
@@ -23,21 +21,28 @@ app.get('/rooms', async function (req, res) {
     }
 });
 
-app.get('/commonIssues', function (req, res) {
-
+app.get('/commonIssues', async function (req, res) {
+    try {
+        let docs = await find(commonIssuesDb, {});
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.send(JSON.stringify(docs));
+    } catch (err) {
+        console.log(err);
+        res.statusCode = 500;
+        res.send('internal server error.');
+    }
 });
 
 app.get('/mailGroups', function (req, res) {
-
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify([]));
 });
 
-// POST method route
 app.post('/sendMail', function (req, res) {
     // let mailInfo = await sendMail();
-    // console.log(mailInfo.messageId);
-    // res.end(`mail successfully sent to ${mailInfo.envelope.to}`);
-    console.log(req);
-    res.send('POST request to the homepage');
+    res.send(`mail successfully sent to ${mailInfo.envelope.to}`);
 });
 
 async function find(db, query) {
@@ -51,5 +56,4 @@ async function find(db, query) {
     });
 }
 
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.listen(3000, () => console.log('app listening on port 3000!'));

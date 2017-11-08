@@ -1,5 +1,4 @@
 <div class="room-container">
-
     <div class="table-group">
         <div class="device top" data-device-id="1" data-bind="click: $parent.deviceClick(1)">1</div>
         <div class="device bot-left" data-device-id="2" data-bind="click: $parent.deviceClick(2)">2</div>
@@ -25,45 +24,3 @@
         <div class="device" data-device-id="13" data-bind="click: $parent.deviceClick(13)">13</div>
     </div>
 </div>
-
-<div class="modal">
-    <h2>neuen Fehler f&uuml;r Raum: A002 melden</h2>
-    <form>
-        <label>
-            Betreff: <input name="title" type="text" >
-        </label>
-        <br>
-        <label>
-            Templates: <select id="template-select" data-bind="foreach: $parent.commonIssueList">
-            <option data-bind="text: title"></option>
-        </select>
-        </label>
-        <br>
-        <label>
-            Beschreibung: <textarea name="description"></textarea>
-        </label>
-        <br>
-        <!--//data bind foreach recipients-list-->
-        additional recipients
-        <div class="recipients-list">
-            <!--<div class="class" data-bind="click: $parent.removeRecipient($index)"></div>-->
-        </div>
-
-        <label>
-            <button>abbrechen</button>
-            <input type="submit" value="ok" >
-        </label>
-    </form>
-</div>
-
-<h1>TODOS:</h1>
-<ul>
-    <li>Sidebar Datenstruktur anlegen und Hierachy einf&uuml;hren</li>
-    <li>mapping zwischen raum name und layout</li>
-    <li>2 weitere layouts erstellen, circle wird am schwersten...</li>
-    <li>room controller anlegen um layout auszusuchen und action f&uuml;r modal Dialog</li>
-    <li>modal Dialog template css und controller anlegen</li>
-    <li>kommunikation zwischen client und server einrichten</li>
-</ul>
-
-

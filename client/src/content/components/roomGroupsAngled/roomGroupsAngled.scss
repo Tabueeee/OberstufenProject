@@ -1,0 +1,57 @@
+
+.room-container {
+    align-items: flex-start;
+    border:      1px solid black;
+    box-sizing:  border-box;
+    display:     flex;
+    flex-wrap:   wrap;
+    height:      100%;
+    position:    relative;
+    width:       100%;
+}
+
+.table-group {
+    border:     1px solid black;
+    box-sizing: border-box;
+    height:     30%;
+    margin:     4% 4%;
+    position:   relative;
+    width:      40%;
+
+    &.teacher-desk {
+        bottom:   5%;
+        height:   10%;
+        left:     60%;
+        margin:   0;
+        position: absolute;
+        width:    20%;
+    }
+
+}
+
+.device {
+    border:   2px solid black;
+    cursor:   pointer;
+    height:   50px;
+    position: absolute;
+    width:    50px;
+
+    &.top {
+        left: 20%;
+        top:  10%;
+    }
+
+    &.bot-right {
+        bottom: 20%;
+        right:  10%;
+    }
+
+    &.bot-left {
+        bottom: 20%;
+        left:   10%;
+    }
+
+    &:hover {
+        border: 2px solid blue;
+    }
+}

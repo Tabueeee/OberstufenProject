@@ -1,14 +1,14 @@
 import {Component} from '../Component';
 
 
-export class Home extends Component {
-    private static readonly COMPONENT_NAME = 'home';
+export class RoomGroupsAngled extends Component {
+    private static readonly COMPONENT_NAME = 'roomGroupsAngled';
 
     private commonIssueList;
     private templateSelector: HTMLElement;
 
     public constructor(commonIssues: any) {
-        super(Home.COMPONENT_NAME);
+        super(RoomGroupsAngled.COMPONENT_NAME);
         this.commonIssueList = commonIssues;
     }
 
