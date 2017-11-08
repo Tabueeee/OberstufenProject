@@ -16,6 +16,10 @@ export abstract class Component {
 
     }
 
+    public onLoad() {
+
+    }
+
     public onInit() {
     }
 }

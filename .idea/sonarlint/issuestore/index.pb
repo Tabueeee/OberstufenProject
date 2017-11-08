@@ -9,8 +9,6 @@ E
 .sass-lint.yml,7\1\713c3bfa712304e41389b3fa65a65eb1e2be660c
 >
 .scss-lint.yml,2\9\29d8c798213b174d9182352a341e1a62ebb6a330
-=
-tsconfig.json,6\1\61ebb9fd6e8cf9082658121d5d81e297791dacd0
 ;
 tslint.json,f\e\fe0ea8c642bdcc721c7c5a4177c93a0ab7f7ef68
 :

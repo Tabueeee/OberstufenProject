@@ -16,7 +16,7 @@ export class KnockoutInitializer {
     }
 
     public initialize() {
-
+        console.log(this.knockoutComponents);
         for (let knockoutComponent of this.knockoutComponents) {
             ko.components.register(knockoutComponent.name, knockoutComponent);
         }

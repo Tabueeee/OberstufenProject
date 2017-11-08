@@ -1,12 +1,10 @@
-import Forge from 'forge-di';
 import {ContentDependencies} from './content/ContentDependencies';
 import {KnockoutDependencies} from './knockout/knockoutDependencies';
-import {HistoryManager} from './common/HistoryManager';
 import {ParamReader} from './common/ParamReader';
 import {Application} from './Application';
 import {UserActions} from './UserActions';
 import {Router} from './Router';
-
+import Forge = require("forge-di");
 
 export class Dependencies {
     private forge: Forge;
@@ -26,7 +24,6 @@ export class Dependencies {
     }
 
     private registerDependencies() {
-        this.forge.bind('historyManager').to.type(HistoryManager);
         this.forge.bind('paramReader').to.type(ParamReader);
         this.forge.bind('userActions').to.type(UserActions);
         this.forge.bind('router').to.type(Router);

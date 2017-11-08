@@ -1,16 +1,24 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "target": "ES2015",
-    "lib": [
-      "es2015.promise"
-    ],
-    "typeRoots": [
-      "typings/globals",
-      "typings/modules"
+    "compilerOptions": {
+        "baseUrl": "./",
+        "allowJs": true,
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "target": "ES2015",
+        "lib": [],
+        "moduleResolution": "node",
+        "experimentalDecorators": false,
+        "sourceMap": false,
+        "pretty": false,
+        "noResolve": false,
+        "typeRoots": [
+            "typings/globals",
+            "typings/modules"
+        ]
+    },
+    "include": [
+        "./**/*.ts"
     ]
-  }
-  "include": [
-    "./**/*.ts"
-  ]
 }

@@ -5,18 +5,15 @@ import {PageRenderer} from './content/PageRenderer';
 import {HistoryManager} from './common/HistoryManager';
 
 export class Router {
-    private historyManager: HistoryManager;
     private pageRenderer: PageRenderer;
     private readonly INITIAL_PAGE = 'home';
     private componentResolver: ComponentResolver;
 
     public constructor(
         pageRenderer: PageRenderer,
-        historyManager: HistoryManager,
         componentResolver: ComponentResolver
     ) {
         this.pageRenderer = pageRenderer;
-        this.historyManager = historyManager;
         this.componentResolver = componentResolver;
     }
 
@@ -32,11 +29,11 @@ export class Router {
 
         // let controller = this.controllerResolver.getControllerByComponentName(pageName);
         let component = this.componentResolver.getComponentByModuleName(pageName);
-
-        this.historyManager.addState(pageName);
+        console.log(component);
         // controller.control(pageName, component);
         let node = this.pageRenderer.renderRootComponent(pageName, component);
 
-        ko.applyBindings({}, node);
+        ko.applyBindings(component, node);
+        component.onLoad();
     }
 }

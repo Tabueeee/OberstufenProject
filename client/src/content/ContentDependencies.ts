@@ -1,8 +1,8 @@
-import Forge = require('forge-di');
 import {Sidebar} from './components/sidebar/sidebar';
 import {PageRenderer} from './PageRenderer';
 import {Home} from './components/home/home';
 import {ComponentResolver} from './components/ComponentResolver';
+import Forge = require("forge-di");
 
 export class ContentDependencies {
     private forge: Forge;

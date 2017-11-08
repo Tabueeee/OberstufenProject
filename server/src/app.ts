@@ -1,69 +1,55 @@
 // import * as http from 'http';
 // import {sendTestMail} from './testmail';
-import {sendMail} from './smptmail';
-import * as Mailgen from 'mailgen';
 
-let mailGenerator = new Mailgen({
-                                    theme: 'default',
-                                    product: {
-                                        // Appears in header & footer of e-mails
-                                        name: 'Mailgen',
-                                        link: 'https://mailgen.js/',
-                                        // Optional product logo
-                                        logo: 'http://www.gso-koeln.de/images/logos/gso-bk-logo.jpg'
-                                    }
-                                });
-let email = {
-    body: {
-        name: 'John Appleseed',
-        intro: 'Welcome to Mailgen! We\'re very excited to have you on board.',
-        action: {
-            instructions: 'To get started with Mailgen, please click here:',
-            button: {
-                color: '#22BC66', // Optional action button color
-                text: 'Confirm your account',
-                link: 'https://mailgen.js/confirm?s=d9729feb74992cc3482b350163a1a010'
-            }
-        },
-        outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
+const Datastore = require('nedb');
+const roomDb = new Datastore({filename: __dirname + '/data/rooms.json', autoload: true});
+
+// sendMail(emailBody).then(console.log);
+
+
+let express = require('express');
+let app = express();
+
+app.get('/rooms', async function (req, res) {
+    try {
+        let docs = await find(roomDb, {});
+        console.log('docs: ' + JSON.stringify(docs));
+        res.statusCode = 200;
+        res.send(JSON.stringify(docs));
+    } catch (err) {
+        console.log(err);
+        res.statusCode = 500;
+        res.send('internal server error.');
     }
-};
-let emailBody = mailGenerator.generate(email);
-// let emailBody = mailGenerator.generatePlaintext(email);
-// transporter.sendMail({
-//                          from: '[email protected]',
-//                          to: '[email protected]',
-//                          subject: 'Message',
-//                          text: 'I hope this message gets streamed!'
-//                      }, (err: string | Error, info: streamedResponse) => {
-//
-//     if (err) {
-//         throw err;
-//     }
-//
-//     console.dir(info, {colors: true, depth: 2});
-//     console.log(info.envelope);
-//     console.log(info.messageId);
-//     info.message.pipe(process.stdout);
-// });
-
-
-sendMail(emailBody).then(console.log);
-
-/*
-const hostname = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer(async (req, res) => {
-  console.log(req.url);
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  let mailInfo = await sendMail();
-  console.log(mailInfo.messageId);
-  res.end(`mail successfully sent to ${mailInfo.envelope.to}`);
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});*/
+app.get('/commonIssues', function (req, res) {
 
+});
+
+app.get('/mailGroups', function (req, res) {
+
+});
+
+// POST method route
+app.post('/sendMail', function (req, res) {
+    // let mailInfo = await sendMail();
+    // console.log(mailInfo.messageId);
+    // res.end(`mail successfully sent to ${mailInfo.envelope.to}`);
+    console.log(req);
+    res.send('POST request to the homepage');
+});
+
+async function find(db, query) {
+    return new Promise(function (resolve, reject) {
+        db.find(query, function (err, docs) {
+            if (typeof err !== 'undefined' && err !== null) {
+                reject(err);
+            }
+            resolve(docs);
+        });
+    });
+}
+
+
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
