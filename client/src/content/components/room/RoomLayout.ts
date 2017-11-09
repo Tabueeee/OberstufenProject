@@ -22,7 +22,7 @@ export abstract class RoomLayout extends Component {
     private issueCounter = 0;
     private room: any;
 
-    public constructor(commonIssues: any, issueFormContainer: IssueFormContainer, userActions: UserActions,componentName) {
+    public constructor(commonIssues: any, issueFormContainer: IssueFormContainer, userActions: UserActions, componentName) {
         super(componentName);
         this.commonIssueList = commonIssues;
         this.issueFormContainer = issueFormContainer;
@@ -93,7 +93,6 @@ export abstract class RoomLayout extends Component {
             for (let index = 0; index < newIssueList.length; index++) {
                 let issue = newIssueList[index];
                 if (issue.issueId === issueId) {
-                    console.log('splicing');
                     let deletedIssue = newIssueList.splice(index, 1);
 
                     this.removeDeviceIssueClassIfNoLongerInIssueList(deletedIssue[0].deviceId, newIssueList);
@@ -130,12 +129,16 @@ export abstract class RoomLayout extends Component {
         return () => {
             if (this.issueDeviceId.peek() !== 0) {
                 let issue = new Issue();
+
                 issue.title = this.title.peek();
                 issue.description = this.description.peek();
-                // todo fixme
-                console.log(this.issueRecipients.peek());
-                // issue.recipients = (this.room.contactMail + ',' + this.issueRecipients.peek()).split(',');
-                issue.recipients = (this.issueRecipients.peek()).split(',');
+
+                if (this.issueRecipients.peek().indexOf(',') > -1) {
+                    issue.recipients = (this.issueRecipients.peek()).trim().split(',');
+                } else {
+                    issue.recipients = [this.issueRecipients.peek()];
+                }
+
                 issue.deviceId = this.issueDeviceId.peek();
                 issue.issueId = this.issueCounter++;
                 issue.roomId = this.roomId;

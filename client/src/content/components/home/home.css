@@ -1,0 +1,49 @@
+.modal {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid black; }
+
+.room-container {
+  align-items: flex-start;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  position: relative; }
+
+.table-group {
+  position: relative;
+  width: 40%;
+  border: 1px solid black;
+  height: 30%;
+  margin: 4% 4%;
+  box-sizing: border-box; }
+  .table-group.teacher-desk {
+    position: absolute;
+    bottom: 5%;
+    height: 10%;
+    width: 20%;
+    left: 60%;
+    margin: 0; }
+
+.device {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  border: 2px solid black;
+  cursor: pointer; }
+  .device.top {
+    left: 20%;
+    top: 10%; }
+  .device.bot-right {
+    right: 10%;
+    bottom: 20%; }
+  .device.bot-left {
+    left: 10%;
+    bottom: 20%; }
+  .device:hover {
+    border: 2px solid blue; }

@@ -3,7 +3,7 @@
     "host": "smtp.gmx.de",
     "auth": {
         "user": "trash.tabu@gmx.de",
-        "pass": "****"
+        "pass": "Peekaboo"
     },
     "authMethod": "PLAIN"
 }

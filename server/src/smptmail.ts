@@ -6,18 +6,7 @@ interface streamedResponse extends SentMessageInfo {
     message: any;
 }
 
-const testMail = {
-    from: emailSettings.auth.user,
-    to: 'tobiassneeze@googlemail.com',
-    subject: 'Message',
-    text: 'I hope this message gets streamed!'
-};
-
-
-let transporter = nodemailer.createTransport(emailSettings);
-
-
-async function verifyConnection() {
+async function verifyConnection(transporter) {
     return new Promise(function (resolve, reject) {
         transporter.verify(function (error) {
             if (error) {
@@ -25,7 +14,7 @@ async function verifyConnection() {
                 reject(error);
             } else {
                 console.log('Server is ready to take our messages');
-                resolve();
+                resolve(true);
             }
         });
     });
@@ -33,31 +22,41 @@ async function verifyConnection() {
 
 function generateEmail(subject, text, mailRecipient): SendMailOptions {
     return {
-        from: emailSettings.auth.user,
+        from: 'trash.tabu@gmx.de',
         to: mailRecipient,
-        subject,
-        text
+        subject: subject,
+        text: text
     };
+}
+
+async function sendMessage(transporter, text: string, title: string, mailRecipient: string) {
+    return new Promise(function (resolve, reject) {
+        let mailToSend: SendMailOptions = generateEmail(title, text, mailRecipient);
+        console.log(mailToSend);
+        transporter.sendMail(mailToSend, (err: string | Error, info: streamedResponse) => {
+            if (err) {
+                reject(err);
+            }
+
+            resolve(info);
+        });
+    });
 }
 
 export async function sendMail(text: string, title: string, mailRecipient: string): Promise<any> {
     try {
-        await verifyConnection();
-        console.log('verifyConnection passed.');
-        return new Promise(function (resolve, reject) {
-            let mailToSend: SendMailOptions = generateEmail(title, text, mailRecipient);
-            console.log(mailToSend);
-            transporter.sendMail(mailToSend, (err: string | Error, info: streamedResponse) => {
-                if (err) {
-                    reject(err);
-                }
+        let transporter = nodemailer.createTransport(emailSettings);
+        let isVerified = await verifyConnection(transporter);
 
-                resolve(info);
-            });
-        });
+        if (isVerified) {
+            console.log('verifyConnection passed.');
+            try {
+                sendMessage(transporter, text, title, mailRecipient);
+            } catch (error) {
+                console.error(error);
+            }
+        }
     } catch (error) {
         console.error(error);
-        console.error('unable to send mail');
-        return 'unable to send mail';
     }
 }

@@ -52,7 +52,7 @@ app.get('/mailGroups', function (req, res) {
     res.send(JSON.stringify([]));
 });
 
-app.post('/addCommonIssue', function (req, res) {
+app.post('/addCommonIssue', async function (req, res) {
     let commonIssue = req.body;
     commonIssuesDb.insert(commonIssue);
     res.send(`common issues succsesfully added.`);
@@ -68,11 +68,12 @@ app.post('/sendMail', async function (req, res) {
         if (mailRecipient !== '') {
             let issuesForRecipient = issues.filter((issue) => issue.recipients.indexOf(mailRecipient) > -1);
             let emailString = generateEmailString(issuesForRecipient);
-            console.log(emailString);
-            let mailInfo = await sendMail(emailString, 'Fehlermeldungen fuer den Raum: ' + issuesForRecipient[0].roomId, mailRecipient);
 
-            if (typeof mailInfo === 'string') {
-                // handle failure
+            try {
+                sendMail(emailString, 'Fehlermeldungen fuer den Raum: ' + issuesForRecipient[0].roomId, mailRecipient);
+            }catch(err){
+                console.log(err);
+                process.exit(0);
             }
         }
     }

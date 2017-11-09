@@ -9,8 +9,17 @@ export class Sidebar extends Component {
     public constructor(rooms: any) {
         super(Sidebar.COMPONENT_NAME);
         this.rooms = rooms;
-        this.wingList = this.getUniqueKeys(rooms, 'wing');
-        // console.log(this.getUniqueKeys(rooms, 'floor'));
+        this.wingList = this.getUniqueKeys(rooms, 'wing').sort(function (a, b) {
+            if (a < b) {
+                return -1;
+            }
+
+            if (a > b) {
+                return 1;
+            }
+
+            return 0;
+        });
     }
 
 
@@ -20,10 +29,37 @@ export class Sidebar extends Component {
     }
 
     public getRooms(wing, floor) {
-        return this.rooms.filter((room) => room.wing === wing && room.floor === floor);
+
+        let filteredRooms = this.rooms.filter((room) => room.wing === wing && room.floor === floor);
+        return filteredRooms.sort(function (a, b) {
+            if (a.substr(1) < b.substr(1)) {
+                return -1;
+            }
+
+            if (a.substr(1) > b.substr(1)) {
+                return 1;
+            }
+
+            return 0;
+        });
+
+        // return this.rooms.filter((room) => room.wing === wing && room.floor === floor);
     }
+
     public getRoomsByWing(wing) {
-        return this.rooms.filter((room) => room.wing === wing);
+        let filteredRooms = this.rooms.filter((room) => room.wing === wing);
+        console.log(filteredRooms);
+        return filteredRooms.sort(function (a, b) {
+            if (a.roomId < b.roomId) {
+                return -1;
+            }
+
+            if (a.roomId > b.roomId) {
+                return 1;
+            }
+
+            return 0;
+        });
     }
 
     public onLoad() {

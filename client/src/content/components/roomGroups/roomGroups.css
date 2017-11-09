@@ -1,0 +1,106 @@
+.room-container {
+  align-items: flex-start;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%; }
+
+.modal {
+  background-color: white;
+  border: 1px solid black;
+  left: 50%;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px; }
+  .modal.disabled {
+    display: none; }
+  .modal .template-select {
+    margin: 5px 0;
+    width: 100%; }
+  .modal .template-save {
+    float: right; }
+  .modal .title {
+    margin: 5px 0;
+    width: 100%; }
+  .modal .recipients {
+    height: 21px;
+    margin: 0 0 20px;
+    width: 340px; }
+  .modal .description {
+    height: 90px;
+    width: 330px; }
+  .modal .abort {
+    float: right; }
+  .modal .confirm {
+    float: left; }
+  .modal h2 {
+    margin: 0 0 20px; }
+
+.issue-list {
+  background-color: white;
+  border: 1px solid #4e5371;
+  bottom: 0;
+  height: 200px;
+  left: 50%;
+  min-height: 200px;
+  min-width: 810px;
+  overflow: scroll;
+  position: fixed;
+  transform: translate(-50%, 0);
+  width: 500px; }
+  .issue-list .remove {
+    float: right;
+    margin-top: -5px; }
+
+.list-item {
+  border-bottom: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  padding: 10px; }
+
+.actions {
+  bottom: 0; }
+  .actions .button {
+    float: left;
+    width: 50%; }
+
+.table-group {
+  position: relative;
+  width: 30%;
+  border: 1px solid black;
+  height: 40%;
+  margin: 4% 10%;
+  box-sizing: border-box; }
+  .table-group.extended {
+    height: 45%;
+    margin-top: -20px; }
+    .table-group.extended .device.bot-right {
+      bottom: 40%; }
+    .table-group.extended .device.bot-left {
+      bottom: 40%; }
+    .table-group.extended .device.bottom {
+      bottom: 10%;
+      right: 20%; }
+
+.device {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  border: 2px solid green;
+  cursor: pointer; }
+  .device.top {
+    left: 20%;
+    top: 10%; }
+  .device.bot-right {
+    right: 10%;
+    bottom: 20%; }
+  .device.bot-left {
+    left: 10%;
+    bottom: 20%; }
+  .device:hover {
+    border: 2px solid blue; }
+  .device.issue {
+    border: 2px solid red; }
