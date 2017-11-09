@@ -9,36 +9,94 @@
 }
 
 .modal {
+    background-color: white;
+    border:           1px solid black;
+    left:             50%;
     padding:          20px;
     position:         absolute;
-    left:             50%;
     top:              50%;
     transform:        translate(-50%, -50%);
     width:            350px;
-    height:           500px;
-    background-color: white;
-    border:           1px solid black;
+
+    &.disabled {
+        display: none;
+    }
+
+    .template-select {
+        margin: 5px 0;
+        width:  100%;
+    }
+
+    .template-save {
+        float: right;
+    }
+
+    .title {
+        margin: 5px 0;
+        width:  100%;
+    }
+
+    .recipients {
+        height: 21px;
+        margin: 0 0 20px;
+        width:  340px;
+    }
+
+    .description {
+        height: 90px;
+        width:  330px;
+    }
+
+    .abort {
+        float: right;
+    }
+
+    .confirm {
+        float: left;
+    }
+    h2 {
+        margin: 0 0 20px;
+    }
 }
 
 .issue-list {
     background-color: white;
-    border: 1px solid #4e5371;
+    border:           1px solid #4e5371;
     bottom:           0;
     height:           200px;
+    left:             50%;
     min-height:       200px;
     min-width:        810px;
+    overflow:         scroll;
     position:         fixed;
-    /* left: 10px; */
+    //transition:       height 1s;
+    transform:        translate(-50%, 0);
     width:            500px;
+
+    .remove {
+        float:      right;
+        margin-top: -5px;
+    }
+
+    //&:hover {
+    //    height: 75%;
+    //}
 }
 
 .list-item {
-
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing:    border-box;
+    padding:       10px;
 }
 
 .actions {
-    position: absolute;
-    bottom:   0;
+    //position: absolute; solve differently maybe with flex and reversed one element
+    bottom: 0;
+
+    .button {
+        float: left;
+        width: 50%;
+    }
 }
 
 .table-group {
@@ -75,7 +133,7 @@
     height:   50px;
     width:    50px;
     position: absolute;
-    border:   2px solid black;
+    border:   2px solid green;
     cursor:   pointer;
 
     &.top {
@@ -95,5 +153,9 @@
 
     &:hover {
         border: 2px solid blue;
+    }
+
+    &.issue {
+        border: 2px solid red;
     }
 }

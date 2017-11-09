@@ -1,40 +1,21 @@
 import * as nodemailer from 'nodemailer';
-import {SentMessageInfo} from 'nodemailer';
-
+import {SendMailOptions, SentMessageInfo} from 'nodemailer';
+import * as emailSettings from '../config/email-settings.json';
 
 interface streamedResponse extends SentMessageInfo {
     message: any;
 }
-let testMailAddress = '';
 
 const testMail = {
-    from: testMailAddress,
-    to: testMailAddress,
+    from: emailSettings.auth.user,
+    to: 'tobiassneeze@googlemail.com',
     subject: 'Message',
     text: 'I hope this message gets streamed!'
 };
 
-let transporter = nodemailer.createTransport({
-                                                 port: 587, // – is the port to connect to (defaults to 587 is secure is false or 465 if true)
-                                                 host: 'mail.gmx.de', // – is the hostname or IP address to connect to (defaults to ‘localhost’)
-                                                 auth: {
-                                                     user: testMailAddress,
-                                                     pass: '***'
-                                                 } // – defines authentication data (see authentication section below)
-                                                 // authMethod: '' // – defines preferred authentication method, defaults to ‘PLAIN’
-                                             });
 
-/*
-let transporter = nodemailer.createTransport({
-                                                 port: false, // – is the port to connect to (defaults to 587 is secure is false or 465 if true)
-                                                 host: 'kolab.gs-koeln.de', // – is the hostname or IP address to connect to (defaults to ‘localhost’)
-                                                 auth: {
-                                                     user: '***',
-                                                     pass: '***'
-                                                 } // – defines authentication data (see authentication section below)
-                                                 // authMethod: '' // – defines preferred authentication method, defaults to ‘PLAIN’
-                                             });
-*/
+let transporter = nodemailer.createTransport(emailSettings);
+
 
 async function verifyConnection() {
     return new Promise(function (resolve, reject) {
@@ -50,17 +31,23 @@ async function verifyConnection() {
     });
 }
 
+function generateEmail(subject, text, mailRecipient): SendMailOptions {
+    return {
+        from: emailSettings.auth.user,
+        to: mailRecipient,
+        subject,
+        text
+    };
+}
 
-export async function sendMail(text?: string | undefined): Promise<any> {
-    if (typeof  text === 'string') {
-        testMail.text = text;
-    }
-
+export async function sendMail(text: string, title: string, mailRecipient: string): Promise<any> {
     try {
         await verifyConnection();
-
+        console.log('verifyConnection passed.');
         return new Promise(function (resolve, reject) {
-            transporter.sendMail(testMail, (err: string | Error, info: streamedResponse) => {
+            let mailToSend: SendMailOptions = generateEmail(title, text, mailRecipient);
+            console.log(mailToSend);
+            transporter.sendMail(mailToSend, (err: string | Error, info: streamedResponse) => {
                 if (err) {
                     reject(err);
                 }

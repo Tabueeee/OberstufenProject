@@ -1,2 +1,19 @@
 @import 'var/variables';
+@import 'tooltip';
 @import 'layout/layout';
+
+.button {
+    display:          block;
+    min-width:        100px;
+    background-color: $color-accent-main;
+    box-sizing:       border-box;
+    padding:          5px;
+    text-decoration:  none;
+    color:            black;
+    transition:       background 2s;
+    text-align:       center;
+
+    &:hover {
+        background-color: lighten($color-accent-main, 20%);
+    }
+}

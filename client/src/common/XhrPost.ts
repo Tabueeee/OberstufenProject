@@ -15,7 +15,7 @@ export class XhrPost {
                 }
             });
 
-            xhr.open('POST', 'http://127.0.0.1:3000/sendMail');
+            xhr.open('POST', url);
             xhr.setRequestHeader('content-type', 'application/json');
             // xhr.setRequestHeader('cache-control', 'no-cache');
 

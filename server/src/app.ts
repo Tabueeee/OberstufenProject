@@ -1,5 +1,7 @@
 /// <reference path="../typings/index.d.ts" />
 
+import {sendMail} from './smptmail';
+
 const Datastore = require('nedb');
 const roomDb = new Datastore({filename: __dirname + '/../data/rooms.json', autoload: true});
 const commonIssuesDb = new Datastore({filename: __dirname + '/../data/commonIssues.json', autoload: true});
@@ -8,12 +10,7 @@ let express = require('express');
 let app = express();
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());       // to support JSON-encoded bodies
-// app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-//                                   extended: true
-//                               }));
-
-// app.use(bodyParser.)
+app.use(bodyParser.json()); // to support JSON-encoded bodies
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -55,35 +52,31 @@ app.get('/mailGroups', function (req, res) {
     res.send(JSON.stringify([]));
 });
 
+app.post('/addCommonIssue', function (req, res) {
+    let commonIssue = req.body;
+    commonIssuesDb.insert(commonIssue);
+    res.send(`common issues succsesfully added.`);
+});
 
-app.post('/sendMail', function (req, res) {
-    // console.dir(req.body, {
-    //     colors: true,
-    //     depth: 4
-    // });
-
-    // let issues = JSON.parse(req.body);
+app.post('/sendMail', async function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-
     let issues = req.body;
-    console.log(issues[0].title);
-
-    // get unique recipients
-    // filter issues by recipient
-    // generate issue strings
-    // assemble email
-    // send emails
 
     let uniqueRecipientsList = getUniqueKeys(issues, 'recipients');
     console.log(uniqueRecipientsList);
-    for (let recipient of uniqueRecipientsList) {
-        let issuesForRecipient = issues.filter((issue) => issue.recipients.indexOf(recipient) > -1);
-        let emailString = generateEmailString(issuesForRecipient);
-        console.log(emailString);
-        // let mailInfo = await sendMail();
+    for (let mailRecipient of uniqueRecipientsList) {
+        if (mailRecipient !== '') {
+            let issuesForRecipient = issues.filter((issue) => issue.recipients.indexOf(mailRecipient) > -1);
+            let emailString = generateEmailString(issuesForRecipient);
+            console.log(emailString);
+            let mailInfo = await sendMail(emailString, 'Fehlermeldungen fuer den Raum: ' + issuesForRecipient[0].roomId, mailRecipient);
+
+            if (typeof mailInfo === 'string') {
+                // handle failure
+            }
+        }
     }
 
-    // res.send(`mail successfully sent to ${mailInfo.envelope.to}`);
     res.send(`mails successfully sent.`);
 });
 

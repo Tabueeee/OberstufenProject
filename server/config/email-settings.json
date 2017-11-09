@@ -1,8 +1,9 @@
 {
-    "port": "",
-    "host": "",
-    "auth": "",
-    "user": "",
-    "pass": "",
-    "authMethod": ""
+    "port": 587,
+    "host": "smtp.gmx.de",
+    "auth": {
+        "user": "trash.tabu@gmx.de",
+        "pass": "****"
+    },
+    "authMethod": "PLAIN"
 }

@@ -8,6 +8,10 @@ export abstract class UserActions {
         this.xhrPost = xhrPost;
     }
 
+    public async sendNewCommonIssueToServer(commonIssue: any) {
+        return await this.xhrPost.postJsonToUrl('http://127.0.0.1:3000/addCommonIssue', JSON.stringify(commonIssue));
+    }
+
     public async sendIssuesToMailServer(issues: Array<Issue>) {
         return await this.xhrPost.postJsonToUrl('http://127.0.0.1:3000/sendMail', JSON.stringify(issues));
     }

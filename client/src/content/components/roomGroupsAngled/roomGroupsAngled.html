@@ -1,26 +1,81 @@
 <div class="room-container">
     <div class="table-group">
-        <div class="device top" data-device-id="1" data-bind="click: $parent.deviceClick(1)">1</div>
-        <div class="device bot-left" data-device-id="2" data-bind="click: $parent.deviceClick(2)">2</div>
-        <div class="device bot-right" data-device-id="3" data-bind="click: $parent.deviceClick(3)">3</div>
+        <div class="device top" id="device-1" data-bind="click: $parent.deviceClick(1)">1</div>
+        <div class="device bot-left" id="device-2" data-bind="click: $parent.deviceClick(2)">2</div>
+        <div class="device bot-right" id="device-3" data-bind="click: $parent.deviceClick(3)">3</div>
     </div>
     <div class="table-group">
-        <div class="device top" data-device-id="4" data-bind="click: $parent.deviceClick(4)">4</div>
-        <div class="device bot-left" data-device-id="5" data-bind="click: $parent.deviceClick(5)">5</div>
-        <div class="device bot-right" data-device-id="6" data-bind="click: $parent.deviceClick(6)">6</div>
+        <div class="device top" id="device-4" data-bind="click: $parent.deviceClick(4)">4</div>
+        <div class="device bot-left" id="device-5" data-bind="click: $parent.deviceClick(5)">5</div>
+        <div class="device bot-right" id="device-6" data-bind="click: $parent.deviceClick(6)">6</div>
     </div>
     <div class="table-group">
-        <div class="device top" data-device-id="7" data-bind="click: $parent.deviceClick(7)">7</div>
-        <div class="device bot-left" data-device-id="8" data-bind="click: $parent.deviceClick(8)">8</div>
-        <div class="device bot-right" data-device-id="9" data-bind="click: $parent.deviceClick(9)">9</div>
+        <div class="device top" id="device-7" data-bind="click: $parent.deviceClick(7)">7</div>
+        <div class="device bot-left" id="device-8" data-bind="click: $parent.deviceClick(8)">8</div>
+        <div class="device bot-right" id="device-9" data-bind="click: $parent.deviceClick(9)">9</div>
     </div>
     <div class="table-group">
-        <div class="device top" data-device-id="10" data-bind="click: $parent.deviceClick(10)">10</div>
-        <div class="device bot-left" data-device-id="11" data-bind="click: $parent.deviceClick(11)">11</div>
-        <div class="device bot-right" data-device-id="12" data-bind="click: $parent.deviceClick(12)">12</div>
+        <div class="device top" id="device-10" data-bind="click: $parent.deviceClick(10)">10</div>
+        <div class="device bot-left" id="device-11" data-bind="click: $parent.deviceClick(11)">11</div>
+        <div class="device bot-right" id="device-12" data-bind="click: $parent.deviceClick(12)">12</div>
     </div>
 
     <div class="table-group teacher-desk">
-        <div class="device" data-device-id="13" data-bind="click: $parent.deviceClick(13)">13</div>
+        <div class="device" id="device-13" data-bind="click: $parent.deviceClick(13)">13</div>
+    </div>
+</div>
+
+<div class="modal disabled" id="modal">
+    <h2>neuen Fehler f&uuml;r Ger&auml;t: <span data-bind="text: $parent.issueDeviceId"></span> melden</h2>
+    <form>
+        <label>
+            Templates: <select
+            class="template-select" id="template-select" data-bind="options: $parent.commonIssueNameList, selectedOptions: $parent.selectedCommonIssue"
+        >
+            <option data-bind="text: title"></option>
+        </select>
+            <a class="button template-save" href="#" data-bind="click: $parent.saveAsTemplate()">speichern</a>
+        </label>
+        <br>
+        <label>
+            Betreff: <input class="title" name="title" type="text" data-bind="value: $parent.title" >
+        </label>
+        <br>
+        <label>
+            Beschreibung: <textarea class="description" name="description" data-bind="value: $parent.description"></textarea>
+        </label>
+        <br>
+        <label>
+            weitere Emp&auml;nger: <textarea class="recipients" name="recipients" data-bind="value: $parent.issueRecipients"></textarea><span
+            class="tooltip popRight" data-tooltip="eine Liste an zus&auml;tzlichen Emp&auml;ngern. Email adressen sind mit einem Komma trennen."
+        >[i]</span>
+        </label>
+        <!--//data bind foreach recipients-list-->
+        <!--additional recipients: -->
+        <!--<div class="recipients-list">-->
+        <!--<div class="class" data-bind="click: $parent.removeRecipient($index)"></div>-->
+        <!--</div>-->
+
+        <label>
+            <a href="#" class="button abort" data-bind="click: $parent.cancelIssue()">abbrechen</a>
+            <a href="#" class="button confirm" data-bind="click: $parent.addIssue()">ok</a>
+        </label>
+    </form>
+</div>
+
+<div class="issue-list">
+    <div class="issue-items" data-bind="foreach: $parent.issueList">
+        <div class="list-item">
+            <span data-bind="text: title"></span>
+            <span data-bind="text: description.substr(0, 10) + '...'"></span>
+            Ger&auml;t: <span data-bind="text: deviceId"></span>
+            Empf&auml;nger: <span data-bind="text: recipients"></span>
+            <a href="#" class="button remove" data-bind="click: $parent.deleteIssue(issueId)">remove</a>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="#" class="button action-clear" data-bind="click: $parent.clearIssues()">Problemberichtliste leeren</a>
+        <a href="#" class="button action-send" data-bind="click: $parent.sendIssues()">Problembericht absenden</a>
     </div>
 </div>
