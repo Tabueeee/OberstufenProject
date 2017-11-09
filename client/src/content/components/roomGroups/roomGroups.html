@@ -1,3 +1,5 @@
+<h1>Raum: <span data-bind="text: $parent.roomId"></span> Ansprechspartner <span data-bind="text: $parent.roomContact"></span></h1>
+
 <div class="room-container">
     <div class="table-group">
         <div class="device top" data-device-id="1" data-bind="click: $parent.deviceClick(1)">1</div>
@@ -40,12 +42,12 @@
         </label>
         <br>
         <label>
-            weitere Emp&auml;nger: <textarea name="description" data-bind="value: $parent.recipients"></textarea>
+            weitere Emp&auml;nger: <textarea name="recipients" data-bind="value: $parent.issueRecipients"></textarea>
         </label>
         <!--//data bind foreach recipients-list-->
         <!--additional recipients: -->
         <!--<div class="recipients-list">-->
-            <!--<div class="class" data-bind="click: $parent.removeRecipient($index)"></div>-->
+        <!--<div class="class" data-bind="click: $parent.removeRecipient($index)"></div>-->
         <!--</div>-->
 
         <label>
@@ -53,4 +55,19 @@
             <a href="#" data-bind="click: $parent.addIssue()">ok</a>
         </label>
     </form>
+</div>
+
+<div class="issue-list">
+    <div class="issue-items" data-bind="foreach: $parent.issueList">
+        <div class="list-item">
+            <span data-bind="text: title"></span>
+            <span data-bind="text: description.substr(0, 10) + '...'"></span>
+            Ger&auml;t: <span data-bind="text: deviceId"></span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="#" class="action-clear" data-bind="click: $parent.clearIssues()">Problemberichtliste leeren</a>
+        <a href="#" class="action-send" data-bind="click: $parent.sendIssues()">Problembericht absenden</a>
+    </div>
 </div>

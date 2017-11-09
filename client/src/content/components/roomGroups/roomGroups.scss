@@ -20,6 +20,27 @@
     border:           1px solid black;
 }
 
+.issue-list {
+    background-color: white;
+    border: 1px solid #4e5371;
+    bottom:           0;
+    height:           200px;
+    min-height:       200px;
+    min-width:        810px;
+    position:         fixed;
+    /* left: 10px; */
+    width:            500px;
+}
+
+.list-item {
+
+}
+
+.actions {
+    position: absolute;
+    bottom:   0;
+}
+
 .table-group {
     position:   relative;
     width:      30%;

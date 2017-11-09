@@ -1,16 +1,14 @@
-import {Router} from './Router';
-import {ComponentName} from './knockout/config/Components';
+import {Issue} from './common/Issue';
+import {XhrPost} from './common/XhrPost';
 
 export abstract class UserActions {
-    private router: Router;
+    private xhrPost: XhrPost;
 
-    public constructor(router: Router) {
-        this.router = router;
+    public constructor(xhrPost: XhrPost) {
+        this.xhrPost = xhrPost;
     }
 
-    public changePage(moduleName: ComponentName, roomName?: string) {
-
-
-        this.router.renderPage(moduleName);
+    public async sendIssuesToMailServer(issues: Array<Issue>) {
+        return await this.xhrPost.postJsonToUrl('http://127.0.0.1:3000/sendMail', JSON.stringify(issues));
     }
 }

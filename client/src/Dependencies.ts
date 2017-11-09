@@ -7,6 +7,7 @@ import {Router} from './Router';
 import {ServerActions} from './common/ServerActions';
 import {XhrRequest} from './common/XhrRequest';
 import Forge = require('forge-di');
+import {XhrPost} from './common/XhrPost';
 
 export class Dependencies {
     private forge: Forge;
@@ -46,6 +47,7 @@ export class Dependencies {
         this.forge.bind('userActions').to.type(UserActions);
         this.forge.bind('router').to.type(Router);
         this.forge.bind('xhrRequest').to.type(XhrRequest);
+        this.forge.bind('xhrPost').to.type(XhrPost);
         this.forge.bind('serverActions').to.type(ServerActions);
     }
 

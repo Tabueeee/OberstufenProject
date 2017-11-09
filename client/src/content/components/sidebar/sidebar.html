@@ -7,7 +7,7 @@
 
     <div data-bind="foreach: {data: $parent.getRoomsByWing(wing), as: 'room'}">
         <div class="item setitem active">
-            <a data-bind="attr: {href: '?page=room&roomId='+room.roomid}"><span data-bind="text: room.roomid"></span></a>
+            <a data-bind="attr: {href: '?page=room&roomId='+room.roomId}"><span data-bind="text: room.roomId"></span></a>
         </div>
     </div>
 </nav>

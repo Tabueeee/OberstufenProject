@@ -3,4 +3,6 @@ export class Issue {
     public title: string;
     public deviceId: number;
     public recipients: Array<string>;
+    public roomId: string;
+    public issueId: number;
 }

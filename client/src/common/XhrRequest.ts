@@ -1,4 +1,5 @@
 export class XhrRequest {
+
     public requestFromUrl(requestUrl: string): Promise<string> {
         return new Promise(function (resolve: (response: string) => void, reject: (error: string | Error) => void): void {
             try {

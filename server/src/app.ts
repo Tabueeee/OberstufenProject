@@ -7,6 +7,21 @@ const commonIssuesDb = new Datastore({filename: __dirname + '/../data/commonIssu
 let express = require('express');
 let app = express();
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+// app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+//                                   extended: true
+//                               }));
+
+// app.use(bodyParser.)
+
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
+
 app.get('/rooms', async function (req, res) {
     try {
         let docs = await find(roomDb, {});
@@ -40,10 +55,74 @@ app.get('/mailGroups', function (req, res) {
     res.send(JSON.stringify([]));
 });
 
+
 app.post('/sendMail', function (req, res) {
-    // let mailInfo = await sendMail();
-    res.send(`mail successfully sent to ${mailInfo.envelope.to}`);
+    // console.dir(req.body, {
+    //     colors: true,
+    //     depth: 4
+    // });
+
+    // let issues = JSON.parse(req.body);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    let issues = req.body;
+    console.log(issues[0].title);
+
+    // get unique recipients
+    // filter issues by recipient
+    // generate issue strings
+    // assemble email
+    // send emails
+
+    let uniqueRecipientsList = getUniqueKeys(issues, 'recipients');
+    console.log(uniqueRecipientsList);
+    for (let recipient of uniqueRecipientsList) {
+        let issuesForRecipient = issues.filter((issue) => issue.recipients.indexOf(recipient) > -1);
+        let emailString = generateEmailString(issuesForRecipient);
+        console.log(emailString);
+        // let mailInfo = await sendMail();
+    }
+
+    // res.send(`mail successfully sent to ${mailInfo.envelope.to}`);
+    res.send(`mails successfully sent.`);
 });
+
+function getUniqueKeys(array, property) {
+    let u = {}, a = [];
+    for (let index = 0; index < array.length; ++index) {
+        for (let innerIndex = 0; innerIndex < array[index][property].length; ++innerIndex) {
+            if (!u.hasOwnProperty(array[index][property][innerIndex])) {
+                a.push(array[index][property][innerIndex]);
+                u[array[index][property][innerIndex]] = 1;
+            }
+        }
+
+    }
+
+    return a;
+}
+
+function generateEmailString(issues) {
+    let emailString = 'Fehlermeldungen fuer den Raum: ' + issues[0].roomId + '\n';
+
+    for (let index = 0; index < issues.length; index++) {
+        emailString += generateIssueString(issues[index]);
+
+        if (index !== emailString.length) {
+            emailString += '\n=========================\n';
+        }
+    }
+
+    return emailString;
+}
+
+function generateIssueString(issue) {
+    let issueString = '' + issue.title + '\n';
+    issueString += 'betroffenes Geraet: ' + issue.deviceId + '\n';
+    issueString += 'Beschreibung:\n' + issue.description;
+
+    return issueString;
+}
 
 async function find(db, query) {
     return new Promise(function (resolve, reject) {

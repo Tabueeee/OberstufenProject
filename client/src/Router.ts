@@ -30,20 +30,20 @@ export class Router {
     }
 
     public renderPage(roomId: string): void {
-        let componentName = this.getComponentNameByRoomId(roomId);
+        let room = this.rooms.filter((room) => room.roomId === roomId)[0];
+        let componentName = this.getComponentNameByRoomId(room);
+        console.log('loading component: "' + componentName + '"');
 
         let component = this.componentResolver.getComponentByModuleName(componentName);
         console.log(component);
         let node = this.pageRenderer.renderRootComponent(componentName, component);
 
         ko.applyBindings(component, node);
-        component.onLoad(roomId);
+        component.onLoad(room);
     }
 
-    private getComponentNameByRoomId(roomId) {
+    private getComponentNameByRoomId(room) {
         let componentName = this.INITIAL_PAGE;
-
-        let room = this.rooms.filter((room) => room.roomid === roomId)[0];
 
         if (typeof room !== 'undefined') {
             let name = Router.layoutMap[room.layout];

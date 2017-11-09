@@ -10,13 +10,11 @@ export abstract class Component {
 
     }
 
-    public abstract updateViewModel(viewModel: any);
-
     public onRender() {
 
     }
 
-    public onLoad(roomId?: string) {
+    public onLoad(room?: any) {
 
     }
 
