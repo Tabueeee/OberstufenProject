@@ -1,3 +1,4 @@
 src/**/*.js.map
+node_modules/
 
 email-settings.json
