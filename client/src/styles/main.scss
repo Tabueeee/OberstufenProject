@@ -2,15 +2,53 @@
 @import 'tooltip';
 @import 'layout/layout';
 
+
+.toast {
+    position: fixed;
+    top:70px;
+    right: 20px;
+    width: 250px;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #333333;
+    border-radius: 5px;
+
+    &.error {
+        background-color: lighten($color-room-issue,10%);
+    }
+    p, input {
+        color: #ffffff;
+    }
+    input {
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        background: transparent;
+        outline: none;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+h1{
+    font-size: 26px;
+    padding-left: 20px;
+    margin: 0;
+    line-height: 50px;
+    float: left;
+}
+
 .modal {
     background-color: white;
-    border:           1px solid $color-accent-main;
+    border:           2px solid $color-accent-main;
     left:             50%;
     padding:          20px;
-    position:         absolute;
+    position:         fixed;
     top:              50%;
     transform:        translate(-50%, -50%);
-    width:            360px;
+    width:            400px;
 
 
     h2 {
@@ -43,6 +81,7 @@
         margin:  5px 0;
         padding: 10px;
         width:   100%;
+        font-size: 20px;
         &:hover {
             border: 1px solid $color-accent-main;
         }
@@ -80,6 +119,75 @@
     }
 
 }
+
+
+.device {
+
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  /*border: 2px solid #000;*/
+  border: none;
+  background-color: $color-room-no-issue;
+  box-sizing: border-box;
+  float: left;
+
+
+  &:hover {
+    //background-color: #FF5252;
+    background-color: lighten($color-room-no-issue, 5%);
+  }
+
+    &.issue {
+      background-color: $color-room-issue;
+
+      &:hover {
+        //background-color: #FF5252;
+         background-color: lighten($color-room-issue, 5%);
+      }
+    }
+}
+
+.issue-list {
+    background-color: white;
+    border:           1px solid #4e5371;
+    bottom:           0;
+    height:           200px;
+    left:             50%;
+    min-height:       200px;
+    min-width:        810px;
+    overflow:         scroll;
+    position:         fixed;
+    //transition:       height 1s;
+    transform:        translate(-50%, 0);
+    width:            500px;
+
+    .remove {
+        float:      right;
+        margin-top: -5px;
+    }
+
+    //&:hover {
+    //    height: 75%;
+    //}
+}
+
+.list-item {
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing:    border-box;
+    padding:       10px;
+}
+
+.actions {
+    //position: absolute; solve differently maybe with flex and reversed one element
+    bottom: 0;
+
+    .button {
+        float: left;
+        width: 50%;
+    }
+}
+
 
 .button {
     background-color: $color-accent-main;

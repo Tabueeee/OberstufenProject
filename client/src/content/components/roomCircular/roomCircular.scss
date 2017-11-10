@@ -1,57 +1,79 @@
-
 .room-container {
-    align-items: flex-start;
-    border:      1px solid black;
-    box-sizing:  border-box;
-    display:     flex;
-    flex-wrap:   wrap;
-    height:      100%;
-    width:       100%;
-    position:    relative;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  margin-bottom: 200px;
+}
+
+.tableCircular {
+  height: 75%;
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+
+  tr {
+    height: 20%;
+  }
+  td {
+    width: 20%;
+  }
 }
 
 .table-group {
-    position:   relative;
-    width:      40%;
-    border:     1px solid black;
-    height:     30%;
-    margin:     4% 4%;
-    box-sizing: border-box;
+  position: relative;
+  float: left;
+  width: 30%;
+  border: 2px solid #333;
+  height: 20%;
+  margin: 2.5% 2.5% 0 0;
+  padding: 2.5% 0 2.5% 2.5%;
+  box-sizing: border-box;
 
-    &.teacher-desk {
-        position: absolute;
-        bottom:   5%;
-        height:   10%;
-        width:    20%;
-        left:     60%;
-        margin:   0;
+  &.teacher-desk {
+    height: 20%;
+    position: relative;
+    float: right;
+    bottom: 0;
+    left: 0;
+
+    .device {
+      height: 95%;
+      width: 45%;
     }
-
+  }
 }
 
 .device {
-    height:   50px;
-    width:    50px;
-    position: absolute;
-    border:   2px solid black;
-    cursor:   pointer;
+  height: 20%;
+  width: 20%;
+  border: 3px solid #eeeeee;
 
-    &.top {
-        left: 20%;
-        top:  10%;
-    }
+  &.filler {
+    background-color: transparent;
+    text-align: center;
+    pointer-events: none;
+    border: none;
+  }
 
-    &.bot-right {
-        right:  10%;
-        bottom: 20%;
-    }
+  &.empty {
+    background-color: transparent;
+    pointer-events: none;
+    border: none;
+  }
 
-    &.bot-left {
-        left:   10%;
-        bottom: 20%;
-    }
+  &.connector {
+    background-color: #ccc;
+    pointer-events: none;
+  }
 
-    &:hover {
-        border: 2px solid blue;
-    }
+  span, h3 {
+    position: relative;
+    top: 40%;
+    translateY: -50%;
+  }
 }

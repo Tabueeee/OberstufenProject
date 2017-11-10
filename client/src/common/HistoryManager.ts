@@ -9,6 +9,11 @@ export class HistoryManager {
         this.popFunctions.push(f);
     }
 
+    // todo generalize and use router to resolve moduleName => route
+    public addState(moduleName: string) {
+        window.history.pushState(moduleName, moduleName, './index.html?page=' + moduleName);
+    }
+
     private onHistoryPop(e) {
         // todo find out and fix pop not removing last state, maybe becuase render page adds state...
 
@@ -17,10 +22,5 @@ export class HistoryManager {
                 popFunction(e.state);
             }
         }
-    }
-
-    // todo generalize and use router to resolve moduleName => route
-    public addState(moduleName: string) {
-        window.history.pushState(moduleName, moduleName, './index.html?page=' + moduleName);
     }
 }

@@ -1,43 +1,55 @@
 .room-container {
-  align-items: flex-start;
   border: 1px solid black;
   box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
+  display: block;
+  float: left;
   height: 100%;
-  position: relative;
   width: 100%;
+  padding-top: 5%;
+  position: relative;
   margin-bottom: 200px; }
 
 .table-group {
-  border: 1px solid black;
-  box-sizing: border-box;
-  height: 30%;
-  margin: 4% 4%;
   position: relative;
-  width: 40%; }
+  float: left;
+  width: 40%;
+  border: 2px solid #333;
+  height: 30%;
+  margin-bottom: 5%;
+  padding: 2.5% 0 2.5% 2.5%;
+  box-sizing: border-box; }
   .table-group.teacher-desk {
-    bottom: 5%;
-    height: 10%;
-    left: 60%;
-    margin: 0;
-    position: absolute;
-    width: 20%; }
+    height: 20%;
+    margin: 0px 5% 5% 0px;
+    position: relative;
+    float: right;
+    bottom: 0;
+    left: 0; }
+    .table-group.teacher-desk .device {
+      height: 95%; }
+  .table-group:nth-of-type(even) {
+    margin-left: 20%; }
 
 .device {
-  border: 2px solid black;
-  cursor: pointer;
-  height: 50px;
-  position: absolute;
-  width: 50px; }
+  height: 45%;
+  width: 45%;
+  margin: 0 5% 5% 0; }
   .device.top {
-    left: 20%;
-    top: 10%; }
+    left: 0;
+    top: 0; }
   .device.bot-right {
-    bottom: 20%;
-    right: 10%; }
+    right: 0;
+    bottom: 0; }
   .device.bot-left {
-    bottom: 20%;
-    left: 10%; }
+    left: 0;
+    bottom: 0; }
+  .device.filler {
+    background-color: transparent;
+    pointer-events: none; }
   .device:hover {
-    border: 2px solid blue; }
+    /*border: 2px solid blue;*/
+    border: none; }
+  .device span {
+    position: relative;
+    top: 40%;
+    translateY: -50%; }

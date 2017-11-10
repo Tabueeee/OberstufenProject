@@ -59,4 +59,3 @@ export class Dependencies {
         this.forge.bind('sidebarNode').to.instance(sidebarNode);
     }
 }
-

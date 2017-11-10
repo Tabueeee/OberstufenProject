@@ -6,23 +6,24 @@ import {IssueFormContainer} from '../../../common/IssueFormContainer';
 import {UserActions} from '../../../UserActions';
 
 export abstract class RoomLayout extends Component {
-    public roomId: string;
+    public roomId:string;
     public title = ko.observable('');
     public description = ko.observable('');
     public issueList = ko.observableArray([]);
-    public roomContact: string;
+    public roomContact:string;
     public selectedCommonIssue = ko.observable('');
-    public commonIssueNameList: Array<any> = ['Fehler Template'];
+    public commonIssueNameList:Array<any> = ['Fehler Template'];
     private commonIssueList;
-    private templateSelector: HTMLElement;
-    private issueFormContainer: IssueFormContainer;
-    private issueDeviceId: Observable<number> = ko.observable(0);
+    private templateSelector:HTMLElement;
+    private issueFormContainer:IssueFormContainer;
+    private issueDeviceId:Observable<number> = ko.observable(0);
     private issueRecipients = ko.observable('');
-    private userActions: UserActions;
+    private userActions:UserActions;
     private issueCounter = 0;
-    private room: any;
+    private room:any;
+    private roomContactMail;
 
-    public constructor(commonIssues: any, issueFormContainer: IssueFormContainer, userActions: UserActions, componentName) {
+    public constructor(commonIssues:any, issueFormContainer:IssueFormContainer, userActions:UserActions, componentName) {
         super(componentName);
         this.commonIssueList = commonIssues;
         this.issueFormContainer = issueFormContainer;
@@ -65,7 +66,7 @@ export abstract class RoomLayout extends Component {
 
             for (let index = 0; index < elements.length; index++) {
                 let element = elements.item(index);
-                element.className = element.className.replace('issue', '');
+                element.classList.remove('issue');
             }
 
             this.issueList([]);
@@ -124,14 +125,33 @@ export abstract class RoomLayout extends Component {
         this.resetFormFields();
     }
 
+    public showError:Observable<boolean> = ko.observable(false);
+    public error:Observable<string> = ko.observable('');
+    private static DESCRIPTION_INVALID = 'Bitte geben Sie eine Beschreibung zum aufgetretenen Fehler an.';
+
+    private addTeachersToMail: Observable<boolean> = ko.observable(false);
+    private addWorkshopToMail: Observable<boolean> = ko.observable(false);
+
+
+
     public addIssue() {
         let modalElement = document.getElementById('modal');
         return () => {
             if (this.issueDeviceId.peek() !== 0) {
+
+                if(this.description.peek() === '' || this.description.peek().length > 500){
+                    this.showError(true);
+                    this.error(RoomLayout.DESCRIPTION_INVALID);
+                }else{
+                    this.showError(false);
+                    this.error('');
+
                 let issue = new Issue();
 
                 issue.title = this.title.peek();
                 issue.description = this.description.peek();
+
+
 
                 if (this.issueRecipients.peek().indexOf(',') > -1) {
                     issue.recipients = (this.issueRecipients.peek()).trim().split(',');
@@ -144,25 +164,25 @@ export abstract class RoomLayout extends Component {
                 issue.roomId = this.roomId;
                 let deviceElement = document.getElementById('device-' + issue.deviceId);
 
-                deviceElement.className += ' issue';
+                deviceElement.classList.add('issue');
 
-                console.log(issue);
                 this.issueList.push(issue);
                 this.issueFormContainer.addIssue(issue);
                 modalElement.className = modalElement.className.replace('active', 'disabled');
                 this.resetFormFields();
+                }
             }
         };
     }
 
     public onLoad(room) {
-        console.log(room.contact);
         this.roomId = room.roomId;
         this.roomContact = room.contact;
+        this.roomContactMail = room.contactMail;
         this.room = room;
     }
 
-    public deviceClick(device: string) {
+    public deviceClick(device:string) {
         let modalElement = document.getElementById('modal');
 
         return () => {
@@ -184,8 +204,16 @@ export abstract class RoomLayout extends Component {
 
         if (issuesWithCurrentDeviceId.length < 1) {
             let element = document.getElementById('device-' + deviceId);
-            element.className = element.className.replace('issue', '');
+            element.classList.remove('issue');
         }
+    }
+
+    public hideToast() {
+        return () => {
+
+            this.showError(false);
+            this.error('');
+        };
     }
 
 }
