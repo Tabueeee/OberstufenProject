@@ -17,7 +17,7 @@ export abstract class RoomLayout extends Component {
     public showError: Observable<boolean> = ko.observable(false);
     public error: Observable<string> = ko.observable('');
     public showChangeContact = ko.observable(false);
-    public roomContact: string;
+    public roomContact: Observable<string> = ko.observable('');
     public roomContactMailInput: Observable<string> = ko.observable('');
     public roomContactInput: Observable<string> = ko.observable('');
     private commonIssueList;
@@ -27,7 +27,7 @@ export abstract class RoomLayout extends Component {
     private userActions: UserActions;
     private issueCounter = 0;
     private room: any;
-    private roomContactMail: string;
+    private roomContactMail: Observable<string> = ko.observable('');
     private addTeachersToMail: Observable<boolean> = ko.observable(false);
     private addWorkshopToMail: Observable<boolean> = ko.observable(false);
 
@@ -54,7 +54,7 @@ export abstract class RoomLayout extends Component {
     public setChangeContact(state: boolean) {
         return () => {
             this.showChangeContact(state);
-        }
+        };
     }
 
     public saveAsTemplate() {
@@ -108,6 +108,9 @@ export abstract class RoomLayout extends Component {
     public changeContact() {
         return () => {
             this.showChangeContact(false);
+            this.roomContact(this.roomContactInput.peek());
+            this.roomContactMail(this.roomContactMailInput.peek());
+
             this.userActions.sendChangeRoomContactToMailServer(
                 this.roomId,
                 {
@@ -207,9 +210,9 @@ export abstract class RoomLayout extends Component {
 
     public onLoad(room) {
         this.roomId = room.roomId;
-        this.roomContact = room.contact;
+        this.roomContact(room.contact);
         this.roomContactInput(room.contact);
-        this.roomContactMail = room.contactMail;
+        this.roomContactMail(room.contactMail);
         this.roomContactMailInput(room.contactMail);
         this.room = room;
     }

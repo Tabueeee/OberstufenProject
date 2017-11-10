@@ -11,7 +11,7 @@
   .tooltip:hover:after, .tooltip:hover:before {
     opacity: 1; }
   .tooltip:after {
-    background: rgba(100, 149, 237, 0.75);
+    background: cornflowerblue;
     border: 1px solid white;
     border-radius: 10px;
     color: white;
@@ -134,6 +134,9 @@ body, html {
     border: 1px solid #393d53; }
   .box:focus {
     border: 1px solid #393d53; }
+
+* {
+  font-family: Calibri, Arial, "Helvetic Neue", Helvetica, sans-serif; }
 
 .toast {
   position: fixed;
@@ -281,6 +284,14 @@ h1 {
   position: absolute;
   width: 400px;
   top: 120px; }
+  .changeContactPopup input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #e5e5e5; }
+    .changeContactPopup input:hover {
+      border: 1px solid #3c77be; }
   .changeContactPopup .confirm {
     float: left;
     width: 50%; }

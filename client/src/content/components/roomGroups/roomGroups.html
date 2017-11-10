@@ -1,5 +1,6 @@
 <h2 class="room-title">Raum: <span data-bind="text: $parent.roomId"></span> Raumbetreuer: <span data-bind="text: $parent.roomContact"></span></h2><img
-    src="styles/edit.png" alt="" class="edit" data-bind="click: $parent.setChangeContact(true)">
+    src="styles/edit.png" alt="" class="edit" data-bind="click: $parent.setChangeContact(true)"
+>
 
 <div class="room-container">
     <div class="table-group">
@@ -34,8 +35,16 @@
 </div>
 
 <div class="changeContactPopup" data-bind="visible: $parent.showChangeContact">
-    <input type="text" data-bind="value: $parent.roomContactInput" >
-    <input type="text" data-bind="value: $parent.roomContactMailInput" >
+
+    <label style="margin-bottom: 5px">
+        Name:
+        <input type="text" data-bind="value: $parent.roomContactInput" >
+    </label>
+    <label style="margin-bottom: 5px">
+        E-Mail Adresse:
+        <input type="text" data-bind="value: $parent.roomContactMailInput" >
+    </label>
+
     <a href="#" class="button confirm" data-bind="click: $parent.changeContact()">Raumbetreuer &auml;ndern</a>
     <a href="#" class="button abort" data-bind="click: $parent.setChangeContact(false)">Abbrechen</a>
 </div>
@@ -96,7 +105,7 @@
         </label>
         <br>
         <label>
-            weitere Emp&auml;nger: <span
+            weitere Empf&auml;nger: <span
             class="tooltip popRight" data-tooltip="Eine Liste an zus&auml;tzlichen Emp&auml;ngern. Trennen Sie mehrere E-Mail-Adressen mit einem Komma."
         >i</span> <textarea class="recipients" name="recipients" data-bind="value: $parent.issueRecipients"></textarea>
         </label>
