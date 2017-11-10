@@ -1,3 +1,10 @@
+/**
+ * Uebergeordnete Klasse fuer die einzelnen Layouts
+ * Beschreibt die Hauptfunktionen der Layouts und ihrer Komponenten
+ *
+ * @author T.Niessen
+ *
+ */
 import {Component} from '../Component';
 import * as ko from 'knockout';
 import {Observable} from 'knockout';
@@ -31,6 +38,14 @@ export abstract class RoomLayout extends Component {
     private addTeachersToMail: Observable<boolean> = ko.observable(false);
     private addWorkshopToMail: Observable<boolean> = ko.observable(false);
 
+    /**
+     * Einstiegspunkt der Klasse
+     *
+     * @param commonIssues
+     * @param issueFormContainer
+     * @param userActions
+     * @param componentName
+     */
     public constructor(commonIssues: any, issueFormContainer: IssueFormContainer, userActions: UserActions, componentName) {
         super(componentName);
         this.commonIssueList = commonIssues;
@@ -57,6 +72,15 @@ export abstract class RoomLayout extends Component {
         };
     }
 
+    /**
+     * Wird aufgerufen, wenn der Speichern-Button unter der Fehlerbeschreibung angeklickt wird.
+     *
+     * Speichert ein neu geschriebenes Fehlerprotokoll ab.
+     * Der Titel und die Beschreibung des Protokolls tauchen beim naechsten Aufruf
+     * in der Liste der Standardfehler auf.
+     *
+     * @returns {function(): undefined}
+     */
     public saveAsTemplate() {
         return () => {
             let newCommonIssue = {
@@ -73,6 +97,13 @@ export abstract class RoomLayout extends Component {
         };
     }
 
+    /**
+     * Wird aufgerufen, wenn der Button ueber der Liste der aufgenommenen Fehlerprotokolle angeklickt wird.
+     *
+     * Loescht alle Eintraege aus der Liste und faerbt alle Geraete wieder gruen.
+     *
+     * @returns {function(): undefined}
+     */
     public clearIssues() {
         return () => {
 
@@ -87,6 +118,13 @@ export abstract class RoomLayout extends Component {
         };
     }
 
+    /**
+     * Wird aufgerufen, wenn der Button zum Absenden der Fehlerprotokolle angeklickt wird.
+     *
+     * Loest das Versenden der E-Mails mit Fehlerprotokollen an die jeweiligen Empfaenger aus.
+     *
+     * @returns {function(): undefined}
+     */
     public sendIssues() {
         return () => {
             if (this.issueList.peek().length > 0) {
@@ -125,6 +163,14 @@ export abstract class RoomLayout extends Component {
     }
 
 
+    /**
+     * Wird aufgerufen, wenn der Button neben einem Protokolleintrag in der Liste angeklickt wird.
+     *
+     * Loescht den betroffenen Eintrag aus der Liste und faerbt das jeweilige Geraet wieder gruen.
+     *
+     * @param issueId
+     * @returns {function(): undefined}
+     */
     public deleteIssue(issueId) {
         return () => {
             let newIssueList = this.issueList.peek();
@@ -143,6 +189,12 @@ export abstract class RoomLayout extends Component {
         };
     }
 
+    /**
+     * Prueft, ob zu dem betroffenen Geraet bereits ein Fehler aufgenommen wurde.
+     *
+     * @param deviceId
+     * @returns {function(): (boolean|boolean)}
+     */
     public deviceHasIssues(deviceId) {
         return () => {
 
@@ -156,6 +208,12 @@ export abstract class RoomLayout extends Component {
         };
     }
 
+    /**
+     * Wird aufgerufen, wenn der "Abbrechen"-Button in der Modal-Box angeklickt wurde.
+     *
+     * Bricht die Aufnahme des Fehlerprotokolls ab und schließt die Modal-Box.
+     *
+     */
     public cancelIssue() {
         let modalElement = document.getElementById('modal');
         modalElement.className = modalElement.className.replace('active', 'disabled');
@@ -163,6 +221,14 @@ export abstract class RoomLayout extends Component {
         this.resetFormFields();
     }
 
+    /**
+     * Wird aufgerufen, wenn der "Protokoll aufnehmen"-Button in der Modal-Box angeklickt wurde.
+     *
+     * Prueft, ob die eingegebenen Daten korrekt sind, fuegt das Fehlerprotokoll zur Liste hinzu und faerbt das Geraet rot ein.
+     * Falls die Daten ungueltig sind, wird stattdessen eine Fehlermeldung eingeblendet, die das Problem beschreibt.
+     *
+     * @returns {function(): undefined}
+     */
     public addIssue() {
         let modalElement = document.getElementById('modal');
         return () => {
@@ -208,6 +274,11 @@ export abstract class RoomLayout extends Component {
         };
     }
 
+    /**
+     * Stellt beim Laden der Seite Variablen mit Informationen zum aktuellen Raum bereit.
+     *
+     * @param room
+     */
     public onLoad(room) {
         this.roomId = room.roomId;
         this.roomContact(room.contact);
@@ -217,6 +288,14 @@ export abstract class RoomLayout extends Component {
         this.room = room;
     }
 
+    /**
+     * Wird aufgerufen, wann immer ein Geraet im Layout ausgewaehlt wird.
+     *
+     * Oeffnet die Modal-Box mit der Aufforderung ein neues Fehlerprotokoll fur dieses Geraet aufzunehmen.
+     *
+     * @param device
+     * @returns {function(): undefined}
+     */
     public deviceClick(device: string) {
         let modalElement = document.getElementById('modal');
 
@@ -227,6 +306,11 @@ export abstract class RoomLayout extends Component {
         };
     }
 
+    /**
+     * Schließt das Fenster der Fehlermeldung.
+     *
+     * @returns {function(): undefined}
+     */
     public hideToast() {
         return () => {
 
@@ -235,6 +319,10 @@ export abstract class RoomLayout extends Component {
         };
     }
 
+    /**
+     * Setzt die Formularfelder innerhalb der Modal-Box zurueck.
+     *
+     */
     private resetFormFields() {
         this.description('');
         this.issueRecipients('');
@@ -244,6 +332,13 @@ export abstract class RoomLayout extends Component {
         this.issueDeviceId(0);
     }
 
+    /**
+     * Prueft, ob noch ein Fehlerprotokoll fuer angegebenes Geraet in der Liste steht.
+     * Falls nicht, wird das Geraet im Layout wieder gruen eingefaerbt.
+     *
+     * @param deviceId
+     * @param issues
+     */
     private removeDeviceIssueClassIfNoLongerInIssueList(deviceId, issues) {
         let issuesWithCurrentDeviceId = issues.filter((issue) => issue.deviceId === deviceId);
 
