@@ -1,12 +1,12 @@
 var Datastore = require('nedb');
-var db        = new Datastore({filename: __dirname + '/commonIssues.json', autoload: true});
+var db        = new Datastore({filename: __dirname + '/../commonIssues.json', autoload: true});
 
 
 
 var commonIssuesByName = [
     {
         title: 'Maus defekt',
-        description: 'Die Maus des Gerätes #%deviceId% ist defekt.',
+        description: 'Die Maus ist defekt.',
         additionalRecipients: []
     },
     {

@@ -13,7 +13,7 @@ export abstract class RoomLayout extends Component {
     public description = ko.observable('');
     public issueList = ko.observableArray([]);
     public selectedCommonIssue = ko.observable('');
-    public commonIssueNameList: Array<any> = ['Fehler Template'];
+    public commonIssueNameList: Array<any> = ['Fehler ausw\u00e4hlen'];
     public showError: Observable<boolean> = ko.observable(false);
     public error: Observable<string> = ko.observable('');
     public showChangeContact = ko.observable(false);
