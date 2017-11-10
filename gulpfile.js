@@ -64,7 +64,7 @@ gulp.task('clean:build', function (done) {
 })
 
 gulp.task('build-assets', ['sass'], function () {
-    return gulp.src(['./client/src/styles/main.css', './client/src/styles/gso-bk-logo.jpg'])
+    return gulp.src(['./client/src/styles/main.css', './client/src/styles/gso-bk-logo.jpg', './client/src/styles/edit.png'])
         .pipe(gulp.dest('./build/client/styles/'));
 });
 gulp.task('build-server-config', function () {
