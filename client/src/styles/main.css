@@ -143,12 +143,12 @@ body, html {
   height: 100px;
   padding: 10px;
   box-sizing: border-box;
-  border: 1px solid #333333;
+  border: 1px solid #333;
   border-radius: 5px; }
   .toast.error {
     background-color: #eb6562; }
   .toast p, .toast input {
-    color: #ffffff; }
+    color: #fff; }
   .toast input {
     position: absolute;
     top: 3px;
@@ -274,3 +274,33 @@ h1 {
   transition: background 2s; }
   .button:hover {
     background-color: #87acd9; }
+
+.changeContactPopup {
+  background-color: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 20px;
+  position: absolute;
+  width: 400px;
+  top: 120px; }
+
+img.edit {
+  width: 34px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  top: 17px;
+  left: 4px; }
+  img.edit:hover {
+    -webkit-transform: scale(1.4);
+    -moz-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    transform: scale(1.4); }
+
+.room-title {
+  float: left; }
+  .room-title::after {
+    clear: both;
+    content: '';
+    display: table-cell; }

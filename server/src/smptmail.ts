@@ -22,7 +22,7 @@ async function verifyConnection(transporter) {
 
 function generateEmail(subject, text, mailRecipient): SendMailOptions {
     return {
-        from: 'trash.tabu@gmx.de',
+        from: emailSettings.auth.user,
         to: mailRecipient,
         subject: subject,
         text: text

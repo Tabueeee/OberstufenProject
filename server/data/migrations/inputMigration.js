@@ -2,32 +2,14 @@ var Datastore = require('nedb');
 var db        = new Datastore({filename: __dirname + '/../rooms.json', autoload: true});
 var roomData  = [
     {
-        raumName: 'B005',
-        raumTyp: 'Sondertyp: 2 Reihen a 6',
-        raumBetreuer: 'Schaletzki',
-        raumBetreuerMail: 'si@gso-koeln.de'
-    },
-    {
         raumName: 'B009',
         raumTyp: 'groups',
         raumBetreuer: 'Remmertz',
         raumBetreuerMail: 'rz@gso-koeln.de'
     },
     {
-        raumName: 'B022',
-        raumTyp: 'Sondertyp: Robotic 6*2',
-        raumBetreuer: 'Grob',
-        raumBetreuerMail: 'go@gso-koeln.de'
-    },
-    {
         raumName: 'B109',
         raumTyp: 'circle',
-        raumBetreuer: 'Neubert',
-        raumBetreuerMail: 'nt@gso-koeln.de'
-    },
-    {
-        raumName: 'B101',
-        raumTyp: 'Sondertyp: 2 Reihen Macs Medienproduktion',
         raumBetreuer: 'Neubert',
         raumBetreuerMail: 'nt@gso-koeln.de'
     },
@@ -70,8 +52,8 @@ var roomData  = [
     {
         raumName: 'C007',
         raumTyp: 'groups',
-        raumBetreuer: 'Kinold',
-        raumBetreuerMail: '?@gso-koeln.de'
+        raumBetreuer: 'Folkmann',
+        raumBetreuerMail: 'fn@gso-koeln.de'
     },
     {
         raumName: 'C013',
@@ -123,7 +105,13 @@ var roomData  = [
         raumBetreuerMail: 'dl@gso-koeln.de'
     },
     {
-        raumName: 'UA01',
+        raumName: 'UA11',
+        raumTyp: 'angled',
+        raumBetreuer: 'Lackmann',
+        raumBetreuerMail: 'ln@gso-koeln.de'
+    },
+    {
+        raumName: 'UA12',
         raumTyp: 'angled',
         raumBetreuer: 'Lackmann',
         raumBetreuerMail: 'ln@gso-koeln.de'
@@ -208,7 +196,7 @@ rooms.forEach(function (roomName) {
         return currentRoom.raumName === roomName;
     });
 
-    if (currentRoomData.length === 1 && ['circle', 'groups', 'angled'].indexOf(currentRoomData[0].raumTyp) !== -1) {
+    if (currentRoomData.length === 1) {
         var room = {
             wing: wing,
             floor: floor,

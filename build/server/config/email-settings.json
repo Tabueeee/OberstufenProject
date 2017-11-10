@@ -2,8 +2,8 @@
     "port": 587,
     "host": "smtp.gmx.de",
     "auth": {
-        "user": "trash.tabu@gmx.de",
-        "pass": "Peekaboo"
+        "user": "gso-Wartungsmanager@gmx.de",
+        "pass": "gsowartungsmanager"
     },
     "authMethod": "PLAIN"
 }

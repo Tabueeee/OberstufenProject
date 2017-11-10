@@ -1,0 +1,590 @@
+[
+    {
+        "raum": "B009",
+        "data": {
+            "name": "Bormann",
+            "mail": "bo@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B009",
+        "data": {
+            "name": "Bunte",
+            "mail": "be@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B009",
+        "data": {
+            "name": "Buschmann",
+            "mail": "bn@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B009",
+        "data": {
+            "name": "Dietrich",
+            "mail": "dh@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B009",
+        "data": {
+            "name": "Dohms",
+            "mail": "ds@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B109",
+        "data": {
+            "name": "Baumert",
+            "mail": "bt@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B109",
+        "data": {
+            "name": "Bellahn",
+            "mail": "bb@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B109",
+        "data": {
+            "name": "Dächting-Lauten",
+            "mail": "dl@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B109",
+        "data": {
+            "name": "Faller",
+            "mail": "fr@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B109",
+        "data": {
+            "name": "Feser",
+            "mail": "fe@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B111",
+        "data": {
+            "name": "Freudenberg",
+            "mail": "fg@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B111",
+        "data": {
+            "name": "Gaida",
+            "mail": "gd@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B111",
+        "data": {
+            "name": "Galla",
+            "mail": "ga@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B111",
+        "data": {
+            "name": "Folkmann",
+            "mail": "fn@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B111",
+        "data": {
+            "name": "Frenz",
+            "mail": "fz@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B113",
+        "data": {
+            "name": "Gorn",
+            "mail": "gn@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B113",
+        "data": {
+            "name": "Grob",
+            "mail": "go@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B113",
+        "data": {
+            "name": "Hahn",
+            "mail": "ha@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B113",
+        "data": {
+            "name": "Hexamer",
+            "mail": "hx@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B113",
+        "data": {
+            "name": "Huschban",
+            "mail": "hn@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B121",
+        "data": {
+            "name": "Kaiser",
+            "mail": "ke@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B121",
+        "data": {
+            "name": "Kaisers",
+            "mail": "ka@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B121",
+        "data": {
+            "name": "Heinze",
+            "mail": "he@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B121",
+        "data": {
+            "name": "Herwig",
+            "mail": "hg@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "B121",
+        "data": {
+            "name": "Kamp",
+            "mail": "kp@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C001",
+        "data": {
+            "name": "Kleine-Kracht",
+            "mail": "kt@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C001",
+        "data": {
+            "name": "Knittel",
+            "mail": "kl@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C001",
+        "data": {
+            "name": "Lackmann",
+            "mail": "ln@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C001",
+        "data": {
+            "name": "Lang",
+            "mail": "lg@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C001",
+        "data": {
+            "name": "Kleefisch",
+            "mail": "ks@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C002",
+        "data": {
+            "name": "Kleibrink",
+            "mail": "kb@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C002",
+        "data": {
+            "name": "Mango",
+            "mail": "ma@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C002",
+        "data": {
+            "name": "Maus",
+            "mail": "ms@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C002",
+        "data": {
+            "name": "Langen",
+            "mail": "la@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C002",
+        "data": {
+            "name": "Laupitz",
+            "mail": "lz@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C004",
+        "data": {
+            "name": "Melin",
+            "mail": "mn@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C004",
+        "data": {
+            "name": "Merschmeier",
+            "mail": "mm@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C004",
+        "data": {
+            "name": "Metzoldt",
+            "mail": "me@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C004",
+        "data": {
+            "name": "Loeser",
+            "mail": "lr@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C004",
+        "data": {
+            "name": "Mondorf",
+            "mail": "mo@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C007",
+        "data": {
+            "name": "Neitzel",
+            "mail": "nl@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C007",
+        "data": {
+            "name": "Neubauer",
+            "mail": "nr@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C007",
+        "data": {
+            "name": "Leupold",
+            "mail": "ld@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C007",
+        "data": {
+            "name": "Nolden",
+            "mail": "no@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C007",
+        "data": {
+            "name": "Pohl",
+            "mail": "pl@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C013",
+        "data": {
+            "name": "Sevindi",
+            "mail": "se@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C013",
+        "data": {
+            "name": "Sielemann",
+            "mail": "sm@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C013",
+        "data": {
+            "name": "Neubert",
+            "mail": "nj@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C013",
+        "data": {
+            "name": "Neumeister-Hanau",
+            "mail": "nh@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C013",
+        "data": {
+            "name": "Okreu",
+            "mail": "ou@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C015",
+        "data": {
+            "name": "Parschau",
+            "mail": "pd@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C015",
+        "data": {
+            "name": "Poller",
+            "mail": "po@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C015",
+        "data": {
+            "name": "Priebitz",
+            "mail": "pz@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C015",
+        "data": {
+            "name": "Raabe",
+            "mail": "ra@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C015",
+        "data": {
+            "name": "Remmertz",
+            "mail": "rz@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C017",
+        "data": {
+            "name": "Schaletzki",
+            "mail": "si@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C017",
+        "data": {
+            "name": "Schneider",
+            "mail": "sc@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C017",
+        "data": {
+            "name": "Reuter",
+            "mail": "rr@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C017",
+        "data": {
+            "name": "Widdau",
+            "mail": "wi@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C017",
+        "data": {
+            "name": "Wirtz",
+            "mail": "wz@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C017",
+        "data": {
+            "name": "Schaletzki",
+            "mail": "si@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C017",
+        "data": {
+            "name": "Schneider",
+            "mail": "sc@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C017",
+        "data": {
+            "name": "Reuter",
+            "mail": "rr@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C021",
+        "data": {
+            "name": "Reininghaus",
+            "mail": "rs@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C021",
+        "data": {
+            "name": "Sauerwald",
+            "mail": "sw@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C021",
+        "data": {
+            "name": "Sommerkamp",
+            "mail": "sp@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C021",
+        "data": {
+            "name": "Stern",
+            "mail": "sn@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C021",
+        "data": {
+            "name": "Tecklenburg",
+            "mail": "tg@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C021",
+        "data": {
+            "name": "Thomas",
+            "mail": "th@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C023",
+        "data": {
+            "name": "Stern",
+            "mail": "sn@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C023",
+        "data": {
+            "name": "Tecklenburg",
+            "mail": "tg@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C023",
+        "data": {
+            "name": "Thomas",
+            "mail": "th@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C023",
+        "data": {
+            "name": "Tobschall",
+            "mail": "ts@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C023",
+        "data": {
+            "name": "Ulbrich",
+            "mail": "ul@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C025",
+        "data": {
+            "name": "Thomas",
+            "mail": "th@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C025",
+        "data": {
+            "name": "Tobschall",
+            "mail": "ts@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "C025",
+        "data": {
+            "name": "Ulbrich",
+            "mail": "ul@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "UA11",
+        "data": {
+            "name": "Vosshage",
+            "mail": "vh@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "UA11",
+        "data": {
+            "name": "Weyandt",
+            "mail": "wt@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "UA11",
+        "data": {
+            "name": "Wolf",
+            "mail": "wf@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "UA12",
+        "data": {
+            "name": "Nunez",
+            "mail": "nz@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "UA12",
+        "data": {
+            "name": "Peusquens",
+            "mail": "pn@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "UA12",
+        "data": {
+            "name": "Wolf",
+            "mail": "wo@gso-koeln.de"
+        }
+    },
+    {
+        "raum": "UA12",
+        "data": {
+            "name": "Zaudtke",
+            "mail": "ze@gso-koeln.de"
+        }
+    }
+]

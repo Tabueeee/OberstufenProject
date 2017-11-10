@@ -35,6 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var timetableData = require("../config/timetableRoom.json");
 var smptmail_1 = require("./smptmail");
 var Datastore = require('nedb');
 var roomDb = new Datastore({ filename: __dirname + '/../data/rooms.json', autoload: true });
@@ -115,36 +116,68 @@ app.post('/addCommonIssue', function (req, res) {
         });
     });
 });
-app.post('/sendMail', function (req, res) {
+app.post('/changeRoomContact/:roomId', function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var issues, uniqueRecipientsList, _loop_1, _i, uniqueRecipientsList_1, mailRecipient;
+        var roomId, newRoomContact;
         return __generator(this, function (_a) {
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            issues = req.body;
-            uniqueRecipientsList = getUniqueKeys(issues, 'recipients');
-            console.log(uniqueRecipientsList);
-            _loop_1 = function (mailRecipient) {
-                if (mailRecipient !== '') {
-                    var issuesForRecipient = issues.filter(function (issue) { return issue.recipients.indexOf(mailRecipient) > -1; });
-                    var emailString = generateEmailString(issuesForRecipient);
-                    try {
-                        smptmail_1.sendMail(emailString, 'Fehlermeldungen fuer den Raum: ' + issuesForRecipient[0].roomId, mailRecipient);
-                    }
-                    catch (err) {
-                        console.log(err);
-                        process.exit(0);
-                    }
-                }
-            };
-            for (_i = 0, uniqueRecipientsList_1 = uniqueRecipientsList; _i < uniqueRecipientsList_1.length; _i++) {
-                mailRecipient = uniqueRecipientsList_1[_i];
-                _loop_1(mailRecipient);
-            }
-            res.send("mails successfully sent.");
+            roomId = req.params.roomId;
+            newRoomContact = req.body;
+            roomDb.update({ roomId: roomId }, { $set: { 'contact': newRoomContact.contact, 'contactMail': newRoomContact.contactMail } });
+            res.send("contact succsesfully changed.");
             return [2];
         });
     });
 });
+app.post('/sendMail', function (req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var issues, uniqueRecipientsList, teachersInRoom, teacherMails, _loop_1, _i, uniqueRecipientsList_1, mailRecipient;
+        return __generator(this, function (_a) {
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            issues = req.body.issues;
+            if (issues.length > 0) {
+                uniqueRecipientsList = getUniqueKeys(issues, 'recipients');
+                if (req.body.addTeachersToMailList === true) {
+                    teachersInRoom = timetableData.filter(function (entry) { return entry.raum === issues[0].roomId; });
+                    teacherMails = teachersInRoom.map(function (a) { return a.data.mail; });
+                    console.log('disabled for preview mails to all teachers are not send:');
+                    console.log(getUniqueStrings(teacherMails));
+                }
+                _loop_1 = function (mailRecipient) {
+                    if (mailRecipient !== '') {
+                        var issuesForRecipient = issues.filter(function (issue) { return issue.recipients.indexOf(mailRecipient) > -1; });
+                        var emailString = generateEmailString(issuesForRecipient);
+                        try {
+                            smptmail_1.sendMail(emailString, 'Fehlermeldungen fuer den Raum: ' + issuesForRecipient[0].roomId, mailRecipient);
+                        }
+                        catch (err) {
+                            console.log(err);
+                            process.exit(0);
+                        }
+                    }
+                };
+                for (_i = 0, uniqueRecipientsList_1 = uniqueRecipientsList; _i < uniqueRecipientsList_1.length; _i++) {
+                    mailRecipient = uniqueRecipientsList_1[_i];
+                    _loop_1(mailRecipient);
+                }
+                res.send("mails successfully sent.");
+            }
+            else {
+                res.send("unable to send mails.");
+            }
+            return [2];
+        });
+    });
+});
+function getUniqueStrings(array) {
+    var u = {}, a = [];
+    for (var index = 0; index < array.length; ++index) {
+        if (!u.hasOwnProperty(array[index])) {
+            a.push(array[index]);
+            u[array[index]] = 1;
+        }
+    }
+    return a;
+}
 function getUniqueKeys(array, property) {
     var u = {}, a = [];
     for (var index = 0; index < array.length; ++index) {

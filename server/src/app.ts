@@ -1,6 +1,19 @@
 /// <reference path="../typings/index.d.ts" />
+import * as timetableData from '../config/timetableRoom.json';
 
 import {sendMail} from './smptmail';
+import {Issue} from './Issue';
+
+interface timetableDataEntry {
+    'raum': string;
+    'data': timetableTeacherData;
+}
+
+interface timetableTeacherData {
+    'name': string;
+    'mail': string;
+}
+
 
 const Datastore = require('nedb');
 const roomDb = new Datastore({filename: __dirname + '/../data/rooms.json', autoload: true});
@@ -58,28 +71,77 @@ app.post('/addCommonIssue', async function (req, res) {
     res.send(`common issues succsesfully added.`);
 });
 
+
+interface changeRoomContactBody {
+    contact: string;
+    contactMail: string;
+}
+
+app.post('/changeRoomContact/:roomId', async function (req, res) {
+    let roomId: string = req.params.roomId;
+    let newRoomContact: changeRoomContactBody = req.body;
+
+    roomDb.update({roomId: roomId}, {$set: {'contact': newRoomContact.contact, 'contactMail': newRoomContact.contactMail}});
+    res.send(`contact succsesfully changed.`);
+});
+
+interface issueMessage {
+    issues: Array<Issue>;
+    addTeachersToMailList: boolean;
+}
+
+
 app.post('/sendMail', async function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    let issues = req.body;
+    let issues = <issueMessage>req.body.issues;
+    if (issues.length > 0) {
+        let uniqueRecipientsList = getUniqueKeys(issues, 'recipients');
 
-    let uniqueRecipientsList = getUniqueKeys(issues, 'recipients');
-    console.log(uniqueRecipientsList);
-    for (let mailRecipient of uniqueRecipientsList) {
-        if (mailRecipient !== '') {
-            let issuesForRecipient = issues.filter((issue) => issue.recipients.indexOf(mailRecipient) > -1);
-            let emailString = generateEmailString(issuesForRecipient);
+        if (<issueMessage>req.body.addTeachersToMailList === true) {
+            let teachersInRoom = (<Array<timetableDataEntry>>timetableData).filter((entry: timetableDataEntry) => entry.raum === issues[0].roomId);
+            let teacherMails = teachersInRoom.map(a => a.data.mail);
 
-            try {
-                sendMail(emailString, 'Fehlermeldungen fuer den Raum: ' + issuesForRecipient[0].roomId, mailRecipient);
-            }catch(err){
-                console.log(err);
-                process.exit(0);
+            console.log('disabled for preview mails to all teachers are not send:');
+            console.log(getUniqueStrings(teacherMails));
+
+            // for (let teacherMail of teacherMails) {
+            //     uniqueRecipientsList.push(teacherMail);
+            // }
+            // uniqueRecipientsList = getUniqueStrings(uniqueRecipientsList);
+        }
+
+        for (let mailRecipient of uniqueRecipientsList) {
+            if (mailRecipient !== '') {
+                let issuesForRecipient = issues.filter((issue) => issue.recipients.indexOf(mailRecipient) > -1);
+                let emailString = generateEmailString(issuesForRecipient);
+
+                try {
+                    sendMail(emailString, 'Fehlermeldungen fuer den Raum: ' + issuesForRecipient[0].roomId, mailRecipient);
+                } catch (err) {
+                    console.log(err);
+                    process.exit(0);
+                }
             }
+        }
+
+        res.send(`mails successfully sent.`);
+    } else {
+        res.send(`unable to send mails.`);
+    }
+});
+
+
+function getUniqueStrings(array: Array<string>) {
+    let u = {}, a = [];
+    for (let index = 0; index < array.length; ++index) {
+        if (!u.hasOwnProperty(array[index])) {
+            a.push(array[index]);
+            u[array[index]] = 1;
         }
     }
 
-    res.send(`mails successfully sent.`);
-});
+    return a;
+}
 
 function getUniqueKeys(array, property) {
     let u = {}, a = [];

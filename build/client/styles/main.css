@@ -2,6 +2,7 @@
   display: inline-block;
   position: relative;
   text-decoration: none;
+  float: left;
   background-color: #3c77be;
   border-radius: 200px;
   width: 20px;
@@ -104,7 +105,11 @@ body, html {
   position: fixed;
   background-color: white;
   color: black;
-  border-bottom: 2px #3c77be; }
+  border-bottom: 2px #3c77be;
+  z-index: 2;
+  -webkit-box-shadow: 0px 5px 0px 0px #3c77be;
+  -moz-box-shadow: 0px 5px 0px 0px #3c77be;
+  box-shadow: 0px 5px 0px 0px #3c77be; }
   .header .header-logo {
     float: right;
     height: 100%;
@@ -130,15 +135,46 @@ body, html {
   .box:focus {
     border: 1px solid #393d53; }
 
+.toast {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 250px;
+  height: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #333;
+  border-radius: 5px; }
+  .toast.error {
+    background-color: #eb6562; }
+  .toast p, .toast input {
+    color: #fff; }
+  .toast input {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    background: transparent;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer; }
+
+h1 {
+  font-size: 26px;
+  padding-left: 20px;
+  margin: 0;
+  line-height: 50px;
+  float: left; }
+
 .modal {
   background-color: white;
-  border: 1px solid #3c77be;
+  border: 2px solid #3c77be;
   left: 50%;
   padding: 20px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 360px; }
+  width: 400px; }
   .modal h2 {
     border-bottom: 1px solid #3c77be;
     margin: 0 0 20px;
@@ -156,7 +192,8 @@ body, html {
     border: 1px solid #e5e5e5;
     margin: 5px 0;
     padding: 10px;
-    width: 100%; }
+    width: 100%;
+    font-size: 20px; }
     .modal .title:hover {
       border: 1px solid #3c77be; }
   .modal .recipients {
@@ -181,6 +218,49 @@ body, html {
   .modal .confirm {
     float: left; }
 
+.device {
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  /*border: 2px solid #000;*/
+  border: none;
+  background-color: #7CB342;
+  box-sizing: border-box;
+  float: left; }
+  .device:hover {
+    background-color: #89be50; }
+  .device.issue {
+    background-color: #E53935; }
+    .device.issue:hover {
+      background-color: #e84f4c; }
+
+.issue-list {
+  background-color: white;
+  border: 1px solid #4e5371;
+  bottom: 0;
+  height: 200px;
+  left: 50%;
+  min-height: 200px;
+  min-width: 810px;
+  overflow: scroll;
+  position: fixed;
+  transform: translate(-50%, 0);
+  width: 500px; }
+  .issue-list .remove {
+    float: right;
+    margin-top: -5px; }
+
+.list-item {
+  border-bottom: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  padding: 10px; }
+
+.actions {
+  bottom: 0; }
+  .actions .button {
+    float: left;
+    width: 50%; }
+
 .button {
   background-color: #3c77be;
   box-sizing: border-box;
@@ -194,3 +274,33 @@ body, html {
   transition: background 2s; }
   .button:hover {
     background-color: #87acd9; }
+
+.changeContactPopup {
+  background-color: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 20px;
+  position: absolute;
+  width: 400px;
+  top: 120px; }
+
+img.edit {
+  width: 34px;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  top: 17px;
+  left: 4px; }
+  img.edit:hover {
+    -webkit-transform: scale(1.4);
+    -moz-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    -o-transform: scale(1.4);
+    transform: scale(1.4); }
+
+.room-title {
+  float: left; }
+  .room-title::after {
+    clear: both;
+    content: '';
+    display: table-cell; }
