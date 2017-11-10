@@ -2,7 +2,7 @@
  * Uebergeordnete Klasse fuer die einzelnen Layouts
  * Beschreibt die Hauptfunktionen der Layouts und ihrer Komponenten
  *
- * @author T.Niessen
+ * @author T.Niessen, M.Henker
  *
  */
 import {Component} from '../Component';
