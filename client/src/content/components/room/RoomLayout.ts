@@ -51,6 +51,12 @@ export abstract class RoomLayout extends Component {
         }.bind(this));
     }
 
+    public setChangeContact(state: boolean) {
+        return () => {
+            this.showChangeContact(state);
+        }
+    }
+
     public saveAsTemplate() {
         return () => {
             let newCommonIssue = {

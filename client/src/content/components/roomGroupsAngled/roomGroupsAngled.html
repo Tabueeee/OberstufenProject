@@ -1,4 +1,5 @@
-<h2>Raum: <span data-bind="text: $parent.roomId"></span> Raumbetreuer: <span data-bind="text: $parent.roomContact"></span></h2>
+<h2 class="room-title">Raum: <span data-bind="text: $parent.roomId"></span> Raumbetreuer: <span data-bind="text: $parent.roomContact"></span></h2><img
+    src="styles/edit.png" alt="" class="edit" data-bind="click: $parent.setChangeContact(true)">
 
 <div class="room-container">
     <div class="table-group">
@@ -32,13 +33,22 @@
     </div>
 </div>
 
+<div class="changeContactPopup" data-bind="visible: $parent.showChangeContact">
+    <input type="text" data-bind="value: $parent.roomContactInput" >
+    <input type="text" data-bind="value: $parent.roomContactMailInput" >
+    <a href="#" class="button confirm" data-bind="click: $parent.changeContact()">Raumbetreuer &auml;ndern</a>
+    <a href="#" class="button abort" data-bind="click: $parent.setChangeContact(false)">Abbrechen</a>
+</div>
+
 <div class="modal disabled" id="modal">
     <h3>Fehlerprotokoll f&uuml;r Ger&auml;t: <span data-bind="text: $parent.issueDeviceId"></span> melden</h3>
     <form>
         <label>
             Standardfehler:
-            <span class="tooltip popRight" data-tooltip="Eine Liste mit h&auml;fig auftretenden Fehlern.
-                Sollten Sie einen anderen Fehler wiederholt feststellen, k&ouml;nnen Sie Ihn mit dem Button unten zur Liste hinzuf&uuml;gen.">i</span>
+            <span
+                class="tooltip popRight" data-tooltip="Eine Liste mit h&auml;fig auftretenden Fehlern.
+                Sollten Sie einen anderen Fehler wiederholt feststellen, k&ouml;nnen Sie Ihn mit dem Button unten zur Liste hinzuf&uuml;gen."
+            >i</span>
             <select class="template-select" id="template-select" data-bind="options: $parent.commonIssueNameList, selectedOptions: $parent.selectedCommonIssue">
                 <option data-bind="text: title"></option>
             </select>
@@ -47,31 +57,37 @@
         <br>
         <label>
             Betreff:
-            <span class="tooltip popRight" data-tooltip="Geben Sie einen Titel f&uuml;r Ihren Fehler an. Der Titel wird f&uuml;r den Betreff der E-Mails verwendet.">i</span>
+            <span
+                class="tooltip popRight"
+                data-tooltip="Geben Sie einen Titel f&uuml;r Ihren Fehler an. Der Titel wird f&uuml;r den Betreff der E-Mails verwendet."
+            >i</span>
             <input class="title" name="title" type="text" data-bind="value: $parent.title" >
         </label>
         <br>
         <label>
             Beschreibung*:
-            <span class="tooltip popRight" data-tooltip="Pflichtfeld! Geben Sie hier eine Beschreibung Ihres Fehlers an.
-                Falls Sie einen Standardfehler melden m&ouml;chten, k&ouml;nnen Sie ihn hier weiter spezifizieren.">i</span>
+            <span
+                class="tooltip popRight" data-tooltip="Pflichtfeld! Geben Sie hier eine Beschreibung Ihres Fehlers an.
+                Falls Sie einen Standardfehler melden m&ouml;chten, k&ouml;nnen Sie ihn hier weiter spezifizieren."
+            >i</span>
             <textarea class="description" name="description" maxlength="500" required data-bind="value: $parent.description"></textarea>
         </label>
         <br>
         <label>
             Lehrer benachrichtigen:
-            <span class="tooltip popRight" data-tooltip="Falls ausgew&auml;hlt, wird eine E-Mail an alle Lehrer verschickt, die nach Plan in diesem Raum unterrichten.">i</span>
-            <input class="contactMail-teachers" type="checkbox"  data-bind="checked: $parent.addTeachersToMail" >
+            <span
+                class="tooltip popRight"
+                data-tooltip="Falls ausgew&auml;hlt, wird eine E-Mail an alle Lehrer verschickt, die nach Plan in diesem Raum unterrichten."
+            >i</span>
+            <input class="contactMail-teachers" type="checkbox" data-bind="checked: $parent.addTeachersToMail" >
         </label>
         <br>
         <label>
             PC-Werkstatt benachrichtigen:
             <span class="tooltip popRight" data-tooltip="Falls ausgew&auml;hlt, wird eine E-Mail an die PC-Werkstatt verschickt.">i</span>
-            <input class="contactMail-workshop" type="checkbox"  data-bind="checked: $parent.addWorkshopToMail" >
+            <input class="contactMail-workshop" type="checkbox" data-bind="checked: $parent.addWorkshopToMail" >
         </label>
         <br>
-
-
 
         <label style="margin-bottom: 5px">
             Raumbetreuer:
@@ -81,7 +97,7 @@
         <br>
         <label>
             weitere Emp&auml;nger: <span
-                class="tooltip popRight" data-tooltip="Eine Liste an zus&auml;tzlichen Emp&auml;ngern. Trennen Sie mehrere E-Mail-Adressen mit einem Komma."
+            class="tooltip popRight" data-tooltip="Eine Liste an zus&auml;tzlichen Emp&auml;ngern. Trennen Sie mehrere E-Mail-Adressen mit einem Komma."
         >i</span> <textarea class="recipients" name="recipients" data-bind="value: $parent.issueRecipients"></textarea>
         </label>
 
@@ -94,7 +110,7 @@
 
 <div class="toast error" data-bind="visible: $parent.showError">
     <p data-bind="text: $parent.error"></p>
-    <input type="button" data-bind="click: $parent.hideToast()" value="X">
+    <input type="button" data-bind="click: $parent.hideToast()" value="X" >
 </div>
 
 <div class="issue-list">

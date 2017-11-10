@@ -2,7 +2,7 @@
 {"wing":"C","floor":"0","layout":"groups","roomId":"C007","contact":"Kinold","contactMail":"?@gso-koeln.de","_id":"CiXyikwYcu9liJiG"}
 {"wing":"C","floor":"0","layout":"circle","roomId":"C021","contact":"Neitzel","contactMail":"nl@gso-koeln.de","_id":"Cit6M5dkFZf9DXfE"}
 {"wing":"B","floor":"0","layout":"groups","roomId":"B009","contact":"Remmertz","contactMail":"rz@gso-koeln.de","_id":"FUSUgOyqu7TFmWC7"}
-{"wing":"B","floor":"1","layout":"circle","roomId":"B111","contact":"Maus123","contactMail":"ms@gso-koeln.de123","_id":"JEEr1UvwPdtU8t6N"}
+{"wing":"B","floor":"1","layout":"circle","roomId":"B111","contact":"Maus","contactMail":"ms@gso-koeln.de","_id":"JEEr1UvwPdtU8t6N"}
 {"wing":"B","floor":"1","layout":"circle","roomId":"B113","contact":"Oster","contactMail":"?@gso-koeln.de","_id":"JkJEzTMpn0axpWil"}
 {"wing":"C","floor":"1","layout":"circle","roomId":"C103","contact":"Steinstrass","contactMail":"st@gso-koeln.de","_id":"RYP2XNmKDDJAaAFR"}
 {"wing":"C","floor":"0","layout":"groups","roomId":"C015","contact":"Bunte","contactMail":"be@gso-koeln.de","_id":"X1mTjkzPQRIow0hv"}
@@ -15,4 +15,3 @@
 {"wing":"C","floor":"0","layout":"groups","roomId":"C023","contact":"Sielemann","contactMail":"sm@gso-koeln.de","_id":"vn7JQ9x4bsV0iDBe"}
 {"wing":"C","floor":"0","layout":"groups","roomId":"C013","contact":"Poller","contactMail":"po@gso-koeln.de","_id":"wpzVjTQ6HP74oYzS"}
 {"wing":"C","floor":"0","layout":"groups","roomId":"C025","contact":"Rüffer","contactMail":"ru@gso-koeln.de","_id":"y9rptrJSIRtoJWCx"}
-{"wing":"B","floor":"1","layout":"circle","roomId":"B111","contact":"Maus","contactMail":"ms@gso-koeln.de","_id":"JEEr1UvwPdtU8t6N"}

@@ -1,65 +1,69 @@
 .room-container {
-  border: 1px solid black;
-  box-sizing: border-box;
-  display: block;
-  float: left;
-  height: 100%;
-  width: 100%;
-  padding: 5% 0 0 5%;
-  position: relative;
-  margin-bottom: 200px;
+    border:        1px solid black;
+    box-sizing:    border-box;
+    display:       block;
+    float:         left;
+    height:        100%;
+    width:         100%;
+    padding:       5% 0 0 5%;
+    position:      relative;
+    margin-bottom: 200px;
 }
 
 .table-group {
-  position: relative;
-  float: left;
-  width: 45%;
-  border: 2px solid #333;
-  height: 30%;
-  margin: 0 5% 5% 0;
-  padding: 2.5% 0 2.5% 2.5%;
-  box-sizing: border-box;
-  &.teacher-desk {
-    height: 20%;
-    margin: 0px 5% 5% 0px;
-    position: relative;
-    float: right;
-    bottom: 0;
-    left: 0;
-    .device {
-      height: 95%;
+    position:   relative;
+    float:      left;
+    width:      45%;
+    border:     2px solid #333;
+    height:     30%;
+    margin:     0 5% 5% 0;
+    padding:    2.5% 0 2.5% 2.5%;
+    box-sizing: border-box;
+
+    &.teacher-desk {
+        height:   20%;
+        margin:   0px 5% 5% 0px;
+        position: relative;
+        float:    right;
+        bottom:   0;
+        left:     0;
+        width:    50%;
+
+        .device {
+            height: 95%;
+            width:  28%;
+        }
     }
-  }
 }
 
 .device {
-  height: 45%;
-  width: 45%;
-  margin: 0 5% 5% 0;
+    height: 45%;
+    width:  45%;
+    margin: 0 5% 5% 0;
 
-  &.top {
-    left: 0;
-    top: 0;
-  }
-  &.bot-right {
-    right: 0;
-    bottom: 0;
-  }
-  &.bot-left {
-    left: 0;
-    bottom: 0;
-  }
-  &.filler {
-    background-color: transparent;
-    pointer-events: none;
-  }
-  &:hover {
-    /*border: 2px solid blue;*/
-    border: none;
-  }
-  span {
-    position: relative;
-    top: 40%;
-    translateY: -50%;
-  }
+    &.top {
+        left: 0;
+        top:  0;
+    }
+    &.bot-right {
+        right:  0;
+        bottom: 0;
+    }
+    &.bot-left {
+        left:   0;
+        bottom: 0;
+    }
+    &.filler {
+        background-color: transparent;
+        pointer-events:   none;
+    }
+    &:hover {
+        /*border: 2px solid blue;*/
+        border: none;
+    }
+    span {
+        position:   relative;
+        top:        40%;
+        translateY: -50%;
+    }
 }
