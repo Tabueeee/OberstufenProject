@@ -1,7 +1,13 @@
 .tooltip {
-    display:         inline-block;
-    position:        relative;
-    text-decoration: none;
+    display:          inline-block;
+    position:         relative;
+    text-decoration:  none;
+
+    background-color: $color-accent-main;
+    border-radius:    200px;
+    width:            20px;
+    color:            white;
+    text-align:       center;
 
     &:hover:after,
     &:hover:before {

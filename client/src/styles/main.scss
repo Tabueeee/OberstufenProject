@@ -2,16 +2,96 @@
 @import 'tooltip';
 @import 'layout/layout';
 
+.modal {
+    background-color: white;
+    border:           1px solid $color-accent-main;
+    left:             50%;
+    padding:          20px;
+    position:         absolute;
+    top:              50%;
+    transform:        translate(-50%, -50%);
+    width:            360px;
+
+
+    h2 {
+        border-bottom: 1px solid $color-accent-main;
+        margin:        0 0 20px;
+        text-align:    center;
+    }
+
+    &.disabled {
+        display: none;
+    }
+
+    .template-select {
+        border:  1px solid #e5e5e5;
+        margin:  5px 0;
+        padding: 10px;
+        width:   100%;
+
+        &:hover {
+            border: 1px solid $color-accent-main;
+        }
+    }
+
+    .template-save {
+        //float: right;
+    }
+
+    .title {
+        border:  1px solid #e5e5e5;
+        margin:  5px 0;
+        padding: 10px;
+        width:   100%;
+        &:hover {
+            border: 1px solid $color-accent-main;
+        }
+    }
+
+    .recipients {
+        border:  1px solid #e5e5e5;
+        height:  50px;
+        margin:  0 0 20px;
+        padding: 10px;
+        resize:  none;
+        width:   100%;
+        &:hover {
+            border: 1px solid $color-accent-main;
+        }
+    }
+
+    .description {
+        height:  90px;
+        width:   100%;
+        resize:  none;
+        padding: 10px;
+        border:  1px solid #e5e5e5;
+        &:hover {
+            border: 1px solid $color-accent-main;
+        }
+    }
+
+    .abort {
+        float: right;
+    }
+
+    .confirm {
+        float: left;
+    }
+
+}
+
 .button {
-    display:          block;
-    min-width:        100px;
     background-color: $color-accent-main;
     box-sizing:       border-box;
+    color:            white;
+    display:          block;
+    font-weight:      600;
+    min-width:        100px;
     padding:          5px;
-    text-decoration:  none;
-    color:            black;
-    transition:       background 2s;
     text-align:       center;
+    text-decoration:  none;
+    transition:       background 2s;
 
     &:hover {
         background-color: lighten($color-accent-main, 20%);

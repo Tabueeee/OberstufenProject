@@ -11,5 +11,8 @@ export class RoomGroupsAngled extends RoomLayout {
         super(commonIssues, issueFormContainer, userActions, RoomGroupsAngled.COMPONENT_NAME);
     }
 
+    public onRender(){
+        console.log(RoomGroupsAngled.COMPONENT_NAME);
+    }
 }
 

@@ -48,7 +48,6 @@ export class Sidebar extends Component {
 
     public getRoomsByWing(wing) {
         let filteredRooms = this.rooms.filter((room) => room.wing === wing);
-        console.log(filteredRooms);
         return filteredRooms.sort(function (a, b) {
             if (a.roomId < b.roomId) {
                 return -1;

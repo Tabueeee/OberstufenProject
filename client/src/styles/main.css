@@ -1,7 +1,12 @@
 .tooltip {
   display: inline-block;
   position: relative;
-  text-decoration: none; }
+  text-decoration: none;
+  background-color: #3c77be;
+  border-radius: 200px;
+  width: 20px;
+  color: white;
+  text-align: center; }
   .tooltip:hover:after, .tooltip:hover:before {
     opacity: 1; }
   .tooltip:after {
@@ -94,11 +99,16 @@ body, html {
   background-color: bisque; }
 
 .header {
-  height: 35px;
+  height: 50px;
   width: 100%;
   position: fixed;
-  background-color: #4ea1ff;
-  color: white; }
+  background-color: white;
+  color: black;
+  border-bottom: 2px #3c77be; }
+  .header .header-logo {
+    float: right;
+    height: 100%;
+    width: auto; }
 
 .grid {
   display: flex;
@@ -120,15 +130,67 @@ body, html {
   .box:focus {
     border: 1px solid #393d53; }
 
+.modal {
+  background-color: white;
+  border: 1px solid #3c77be;
+  left: 50%;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px; }
+  .modal h2 {
+    border-bottom: 1px solid #3c77be;
+    margin: 0 0 20px;
+    text-align: center; }
+  .modal.disabled {
+    display: none; }
+  .modal .template-select {
+    border: 1px solid #e5e5e5;
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%; }
+    .modal .template-select:hover {
+      border: 1px solid #3c77be; }
+  .modal .title {
+    border: 1px solid #e5e5e5;
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%; }
+    .modal .title:hover {
+      border: 1px solid #3c77be; }
+  .modal .recipients {
+    border: 1px solid #e5e5e5;
+    height: 50px;
+    margin: 0 0 20px;
+    padding: 10px;
+    resize: none;
+    width: 100%; }
+    .modal .recipients:hover {
+      border: 1px solid #3c77be; }
+  .modal .description {
+    height: 90px;
+    width: 100%;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #e5e5e5; }
+    .modal .description:hover {
+      border: 1px solid #3c77be; }
+  .modal .abort {
+    float: right; }
+  .modal .confirm {
+    float: left; }
+
 .button {
-  display: block;
-  min-width: 100px;
-  background-color: #4ea1ff;
+  background-color: #3c77be;
   box-sizing: border-box;
+  color: white;
+  display: block;
+  font-weight: 600;
+  min-width: 100px;
   padding: 5px;
+  text-align: center;
   text-decoration: none;
-  color: black;
-  transition: background 2s;
-  text-align: center; }
+  transition: background 2s; }
   .button:hover {
-    background-color: #b4d7ff; }
+    background-color: #87acd9; }

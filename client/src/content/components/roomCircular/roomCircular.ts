@@ -11,5 +11,9 @@ export class RoomCircular extends RoomLayout {
         super(commonIssues, issueFormContainer, userActions, RoomCircular.COMPONENT_NAME);
     }
 
+    public onRender(){
+        console.log(RoomCircular.COMPONENT_NAME);
+    }
+
 }
 

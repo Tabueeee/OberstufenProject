@@ -1,13 +1,14 @@
 
 .room-container {
-    align-items: flex-start;
-    border:      1px solid black;
-    box-sizing:  border-box;
-    display:     flex;
-    flex-wrap:   wrap;
-    height:      100%;
-    position:    relative;
-    width:       100%;
+    align-items:   flex-start;
+    border:        1px solid black;
+    box-sizing:    border-box;
+    display:       flex;
+    flex-wrap:     wrap;
+    height:        100%;
+    position:      relative;
+    width:         100%;
+    margin-bottom: 200px;
 }
 
 .table-group {

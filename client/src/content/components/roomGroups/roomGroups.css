@@ -5,40 +5,8 @@
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  width: 100%; }
-
-.modal {
-  background-color: white;
-  border: 1px solid black;
-  left: 50%;
-  padding: 20px;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 350px; }
-  .modal.disabled {
-    display: none; }
-  .modal .template-select {
-    margin: 5px 0;
-    width: 100%; }
-  .modal .template-save {
-    float: right; }
-  .modal .title {
-    margin: 5px 0;
-    width: 100%; }
-  .modal .recipients {
-    height: 21px;
-    margin: 0 0 20px;
-    width: 340px; }
-  .modal .description {
-    height: 90px;
-    width: 330px; }
-  .modal .abort {
-    float: right; }
-  .modal .confirm {
-    float: left; }
-  .modal h2 {
-    margin: 0 0 20px; }
+  width: 100%;
+  margin-bottom: 200px; }
 
 .issue-list {
   background-color: white;

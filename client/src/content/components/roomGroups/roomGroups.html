@@ -25,7 +25,7 @@
 </div>
 
 <div class="modal disabled" id="modal">
-    <h2>neuen Fehler f&uuml;r Ger&auml;t: <span data-bind="text: $parent.issueDeviceId"></span> melden</h2>
+    <h2>Fehler f&uuml;r Ger&auml;t: <span data-bind="text: $parent.issueDeviceId"></span> melden</h2>
     <form>
         <label>
             Templates: <select
@@ -45,15 +45,10 @@
         </label>
         <br>
         <label>
-            weitere Emp&auml;nger: <textarea class="recipients" name="recipients" data-bind="value: $parent.issueRecipients"></textarea><span
+            weitere Emp&auml;nger: <span
             class="tooltip popRight" data-tooltip="eine Liste an zus&auml;tzlichen Emp&auml;ngern. Email adressen sind mit einem Komma trennen."
-        >[i]</span>
+        >i</span> <textarea class="recipients" name="recipients" data-bind="value: $parent.issueRecipients"></textarea>
         </label>
-        <!--//data bind foreach recipients-list-->
-        <!--additional recipients: -->
-        <!--<div class="recipients-list">-->
-        <!--<div class="class" data-bind="click: $parent.removeRecipient($index)"></div>-->
-        <!--</div>-->
 
         <label>
             <a href="#" class="button abort" data-bind="click: $parent.cancelIssue()">abbrechen</a>
@@ -66,7 +61,6 @@
     <div class="issue-items" data-bind="foreach: $parent.issueList">
         <div class="list-item">
             <span data-bind="text: title"></span>
-            <span data-bind="text: description.substr(0, 10) + '...'"></span>
             Ger&auml;t: <span data-bind="text: deviceId"></span>
             Empf&auml;nger: <span data-bind="text: recipients"></span>
             <a href="#" class="button remove" data-bind="click: $parent.deleteIssue(issueId)">remove</a>

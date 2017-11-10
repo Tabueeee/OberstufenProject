@@ -124,7 +124,7 @@ var roomData  = [
     },
     {
         raumName: 'UA01',
-        raumTyp: 'groupsAngled',
+        raumTyp: 'angled',
         raumBetreuer: 'Lackmann',
         raumBetreuerMail: 'ln@gso-koeln.de'
     }
@@ -208,7 +208,7 @@ rooms.forEach(function (roomName) {
         return currentRoom.raumName === roomName;
     });
 
-    if (currentRoomData.length === 1) {
+    if (currentRoomData.length === 1 && ['circle', 'groups', 'angled'].indexOf(currentRoomData[0].raumTyp) !== -1) {
         var room = {
             wing: wing,
             floor: floor,

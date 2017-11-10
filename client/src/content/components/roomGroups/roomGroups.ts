@@ -12,4 +12,7 @@ export class RoomGroups extends RoomLayout {
         super(commonIssues, issueFormContainer, userActions, RoomGroups.COMPONENT_NAME);
     }
 
+    public onRender(){
+        console.log(RoomGroups.COMPONENT_NAME);
+    }
 }

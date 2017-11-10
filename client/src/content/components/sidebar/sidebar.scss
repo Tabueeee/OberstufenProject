@@ -4,10 +4,10 @@
     background-color: $color-background-main;
     box-sizing:       border-box;
     display:          block;
-    width:            250px;
+    width:            150px;
 
     @media(min-width: 900px) {
-        width: 350px;
+        width: 250px;
     }
 }
 
