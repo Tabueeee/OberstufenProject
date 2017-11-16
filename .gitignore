@@ -100,6 +100,7 @@ $RECYCLE.BIN/
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/sonarLint/**/*
+.idea/**/StickySelectionHighlights.xml
 
 # Gradle:
 .idea/**/gradle.xml
