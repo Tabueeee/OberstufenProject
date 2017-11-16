@@ -1,0 +1,181 @@
+@startuml
+class Application {
+  + constructor(knockoutInitializer: KnockoutInitializer, paramReader: ParamReader, router: Router, serverActions: ServerActions)
+  .. Functions ..
+  + run()
+  __ Properties __
+  - ParamReader paramReader
+  - KnockoutInitializer knockoutInitializer
+  - Router router
+  - ServerActions serverActions
+}
+
+interface Room {
+  + string wing
+  + string floor
+  + string layout
+  + string roomId
+  + string contact
+  + string contactMail
+  + string _id
+}
+interface CommonIssue {
+  + string title
+  + string description
+  + string additionalRecipients
+  + string _id
+}
+
+class KnockoutInitializer {
+  + constructor(knockoutComponents: Array<KnockoutComponent>)
+  .. Functions ..
+  + initialize()
+}
+
+class ParamReader {
+  .. Functions ..
+  + getQueryVariable(variable): string | undefined
+}
+
+class Router {
+  + constructor(pageRenderer: PageRenderer, componentResolver: ComponentResolver, rooms: Array<Room>)
+  .. Functions ..
+  + renderLayout()
+  + renderPage(roomId: string)
+  - getComponentNameByRoomId(room)
+}
+
+class ServerActions {
+  + constructor(xhrRequest: XhrRequest)
+  .. Functions ..
+  + getCommonIssues()
+  + getRooms()
+}
+
+class XhrRequest {
+  .. Functions ..
+  + requestFromUrl(requestUrl: string)
+}
+
+class PageRenderer {
+  + constructor(rootNode: HTMLElement, sidebarNode: HTMLElement)
+  .. Functions ..
+  + getLayoutNode()
+  + renderRootComponent(moduleName: string, component: Component)
+}
+
+class ComponentResolver {
+  + constructor(components: Array<Component>, componentClassMapping: Record<string, string>)
+    .. Functions ..
+  - getComponent(classToResolve: string)
+  + getComponentByModuleName(moduleName: string)
+}
+class RoomLayout {
+  + constructor(commonIssues: Array<Issue>, issueFormContainer: IssueFormContainer, userActions: UserActions, componentName)
+  .. Functions ..
+  + setChangeContact(state: boolean)
+  + saveAsTemplate()
+  + clearIssues()
+  + sendIssues()
+  + changeContact()
+  + deleteIssue(issueId: string)
+  + deviceHasIssues(deviceId: string)
+  + cancelIssue()
+  + addIssue()
+  + onLoad(room: Room)
+  + deviceClick(device: string)
+  + hideToast()
+  - resetFormFields()
+  - removeDeviceIssueClassIfNoLongerInIssueList()
+  __ properties __
+  + string roomId
+  + Observable<string> title
+  + Observable<string> description
+  + Observable<Array<Issue>> issueList
+  + Observable<string> seletedCommonIssue
+  + Observable<string> commonIssueNameList
+  + Observable<boolean> showError
+  + Observable<string> error
+  + Observable<boolean> showChangeContact
+  + Observable<string>  roomContact
+  + Observable<string>  roomContactMailInput
+  + Observable<string> roomContactInput
+  + Observable<string> roomContactMail
+  + Observable<boolean> addTeachersToMail
+  + Observable<boolean> addWorkshopToMail
+  + Observable<number> issueDeviceId
+  + Observable<string> issueRecipients
+  - Array<Issue> commonIssueList
+  - UserActions userActions
+  - number issueCounter
+}
+
+ class RoomGroups {
+  + constructor(commonIssues: any, issueFormContainer: IssueFormContainer, userActions: UserActions)
+  .. Functions ..
+  + onRender()
+  - {static} readonly string COMPONENT_NAME
+ }
+
+ class RoomCircular {
+   + constructor(commonIssues: any, issueFormContainer: IssueFormContainer, userActions: UserActions)
+  .. Functions ..
+   + onRender()
+   - {static} readonly string COMPONENT_NAME
+ }
+
+class RoomGroupsAngled {
+  + constructor(commonIssues: any, issueFormContainer: IssueFormContainer, userActions: UserActions)
+  .. Functions ..
+  + onRender()
+  - {static} readonly string COMPONENT_NAME
+}
+
+class Component {
+  .. Functions ..
+  + setUpdate()
+  + onRender()
+  + onLoad(room: Room)
+  + onInit()
+  __ properties __
+  + string name
+}
+
+
+class Issue {
+  __ properties __
+  + string description
+  + string title
+  + number deviceId
+  + Array<string> recipients
+  + string roomId
+  + number issueId
+}
+
+
+RoomLayout <|--- RoomGroups
+RoomLayout <|--- RoomCircular
+RoomLayout <|--- RoomGroupsAngled
+
+Component <|--- RoomLayout
+Issue <--- RoomLayout
+CommonIssue <--- RoomLayout
+Room <--- RoomLayout
+
+
+KnockoutInitializer <--- Application
+Component <--- KnockoutInitializer
+
+ParamReader <--- Application
+
+Router <--- Application
+PageRenderer <--- Router
+ComponentResolver <--- Router
+Component <--- ComponentResolver
+Room <--- Router
+
+ServerActions <--- Application
+XhrRequest <--- ServerActions
+
+
+@enduml

@@ -1,0 +1,118 @@
+@startuml
+class app {
+
+}
+
+
+interface timetableDataEntry {
+  __ properties __
+  + string raum
+  + timetableTeacherData data
+}
+
+interface timetableTeacherData {
+  __ properties __
+  + string name
+  + string mail
+}
+
+interface changeRoomContactBody {
+  __ properties __
+  + contact: string;
+  + contactMail: string;
+}
+
+interface issueMessage {
+  __ properties __
+  + issues: Array<Issue>;
+  + addTeachersToMailList: boolean;
+}
+
+ class smptmail {
+  .. Functions ..
+ + sendMail(text: string, title: string, mailRecipient: string)
+ - sendMessage(transporter, text: string, title: string, mailRecipient: string)
+ - verifyConnection(transporter)
+ - generateEmail(subject, text, mailRecipient)
+}
+
+interface SentMessageInfo {
+  __ properties __
+  + messageId: string
+  + envelope: any
+  + accepted: string[]
+  + rejected: string[]
+  + pending?: string[]
+  + response: string
+}
+
+class Transporter {
+  .. Functions ..
+  + sendMail(mail: SendMailOptions): Promise<SentMessageInfo>
+  + verify(): Promise<void>
+}
+
+interface "email-settings" {
+  __ properties __
+  + string port
+  + string host
+  + Auth auth
+  + string authMethod
+}
+
+interface Auth {
+  __ properties __
+  + string user
+  + string pass
+}
+
+class nedb {
+  .. Functions ..
+  + loadDatabase(cb?: (err: Error) => void): void;
+  + insert<T>(newDoc: T, cb?: (err: Error, document: T) => void): void;
+  + find<T>(query: any, callback: (err: Error, documents: T[]) => void): void;
+  + findOne<T>(query: any, callback: (err: Error, document: T) => void): void;
+  + update<T>(query: any, updateQuery: any, options?: Nedb.UpdateOptions, cb?: (err: Error, numberOfUpdated: number, affectedDocuments: any, upsert: boolean) => void): void;
+  + remove(query: any, cb?: (err: Error, n: number) => void): void;
+}
+
+
+class "body-parser" {
+  .. Functions ..
+    + json()
+}
+
+class express {
+  .. Functions ..
+  + set(setting: string, val: any): this
+  + get(path: PathArgument, ...handlers: HandlerArgument[]): this
+  + listen(port: number, listeningListener?: Function): Server
+}
+
+class nodemailer {
+  + createTransport(emailSettings)
+}
+
+
+express <--- app
+nedb <--- app
+"body-parser" <--- app
+smptmail <--- app
+
+timetableDataEntry <--- app
+timetableTeacherData <--- app
+changeRoomContactBody <--- app
+issueMessage <--- app
+
+
+Auth <--- "email-settings"
+
+nodemailer <--- smptmail
+Transporter <--- smptmail
+"email-settings" <--- smptmail
+SentMessageInfo <--- smptmail
+
+"email-settings" <--- nodemailer
+
+
+@enduml
